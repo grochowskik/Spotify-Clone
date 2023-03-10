@@ -1,16 +1,14 @@
 import { useQuery } from 'react-query';
 import { getData } from '../../../services/ApiSlice';
 
-const useArtistTopSongsFetch = () => {
+export const useArtistTopSongsFetch = (artist_id: string) => {
   const { data, isLoading, isError, ...rest } = useQuery({
-    queryKey: ['topSongs'],
+    queryKey: ['getArtistsTopSongs'],
     queryFn: () =>
-      getData('/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks', {
+      getData(`/v1/artists/${artist_id}/top-tracks`, {
         market: 'ES',
       }),
   });
 
   return { data, isLoading, isError, ...rest };
 };
-
-export default useArtistTopSongsFetch;

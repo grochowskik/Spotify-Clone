@@ -1,18 +1,20 @@
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import useArtistTopSongsFetch from '../../../react-query/fetch/Artist/useArtistTopSongsFetch';
+import { useAlbumsTracksFetch } from '../../../react-query/fetch/Albums/useAlbumsTracksFetch';
 
 function MusicList() {
-  [data, isLoading, isError] = useArtistTopSongsFetch();
+  const {data, isLoading, isError} = useAlbumsTracksFetch('4aawyAB9vmqN3uQ7FjRGTy');
 
   if (isLoading) return <h1>...Loading</h1>;
   if (isError) return <h1>...Error</h1>;
 
+  console.log(data)
+
   return (
     <>
       <section className="mt-8 col-start-2 col-span-5">
-        {data.tracks.map((song) => {
+        {data.items.map((song) => {
           const minutes = Math.floor(song.duration_ms / 1000 / 60);
           const seconds = song.duration_ms / 1000 - minutes * 60;
           return (

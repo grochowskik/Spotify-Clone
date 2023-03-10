@@ -6,14 +6,6 @@ function HomePage() {
     <>
       <Header />
       {/* <LoginModal /> */}
-      <audio
-        controls
-        src="https://api.spotify.com/v1/tracks/3cHyrEgdyYRjgJKSOiOtcS"
-      />
-      <a
-        href="https://api.spotify.com/v1/tracks/3cHyrEgdyYRjgJKSOiOtcS"
-        className="w-96"
-      ></a>
     </>
   );
 }

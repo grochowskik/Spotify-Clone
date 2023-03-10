@@ -1,7 +1,7 @@
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import MusicPage from './pages/MusicPage';
+import BrowsePage from './pages/BrowsePage';
 import ArtistPage from './pages/ArtistPage';
 import PlaylistPage from './pages/PlaylistPage';
 
@@ -11,8 +11,8 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: 'music',
-    element: <MusicPage />,
+    path: 'browse',
+    element: <BrowsePage />,
   },
   {
     path: 'artist',

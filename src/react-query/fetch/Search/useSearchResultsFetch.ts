@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { getData } from '../../../services/ApiSlice';
 
-export const useArtistFetch = (artist_id: string) => {
+export const useSearchResultsFetch = () => {
   const { data, isLoading, isError, ...rest } = useQuery({
-    queryKey: ['getArtists'],
-    queryFn: () => getData(`/v1/artists/${artist_id}/`),
+    queryKey: ['getSearchResults'],
+    queryFn: () => getData('/v1/search'),
   });
 
   return { data, isLoading, isError, ...rest };

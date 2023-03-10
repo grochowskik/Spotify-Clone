@@ -6,7 +6,7 @@ function Header() {
       </a>
       <span>
         <a
-          href="/music"
+          href="/browse"
           className="mx-4 px-4 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer"
         >
           Listen
