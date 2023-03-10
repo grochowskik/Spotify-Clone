@@ -14,7 +14,7 @@ function MusicList() {
   return (
     <>
       <section className="mt-8 col-start-2 col-span-5">
-        {data.items.map((song) => {
+        {data.items.map((song: any) => {
           const minutes = Math.floor(song.duration_ms / 1000 / 60);
           const seconds = song.duration_ms / 1000 - minutes * 60;
           return (
@@ -43,7 +43,7 @@ function MusicList() {
                 />
                 <a className=" text-cyan-50 mx-6">{`${minutes}:${Math.round(
                   seconds
-                )}`}</a>
+                ).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`}</a>
               </div>
             </div>
           );

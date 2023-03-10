@@ -3,8 +3,8 @@ import SearchIcon from '@mui/icons-material/Search';
 function SidebarNavigation() {
   return (
     <>
-      <div className="absolute mx-6 mt-2">
-        <section className="my-10 flex mb-24">
+      <div className="absolute mx-6 mt-14">
+        <section className="my-10 flex mb-32">
           {/* <label>Szukaj</label> */}
           <input
             placeholder="Szukaj"
@@ -12,7 +12,7 @@ function SidebarNavigation() {
           />
           <SearchIcon fontSize="large" color="secondary" />
         </section>
-        <section className="grid gap-4 text-cyan-50 mb-8">
+        <section className="grid gap-4 text-cyan-50 mb-12">
           <a className=" px-4 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer font-medium text-s">
             Favourites
           </a>
@@ -25,17 +25,17 @@ function SidebarNavigation() {
         </div>
         <section className="grid">
           <a
-            href=""
+            href="/artist"
             className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
           >
             Ooh Eeh Ooh Ah Aah
-          </a>{' '}
+          </a>
           <a
             href=""
             className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
           >
             Ooh Eeh Ooh Ah Aah
-          </a>{' '}
+          </a>
           <a
             href=""
             className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"

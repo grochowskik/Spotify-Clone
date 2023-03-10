@@ -3,7 +3,7 @@ import { getData } from '../../../services/ApiSlice';
 
 export const useNewRealesesFetch = () => {
   const { data, isLoading, isError, ...rest } = useQuery({
-    queryKey: ['artist'],
+    queryKey: ['getNewRealeses'],
     queryFn: () => getData('/v1/browse/new-releases'),
   });
 

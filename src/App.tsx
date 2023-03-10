@@ -24,12 +24,15 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <>nie ma takiej dupy</>,
+    element: <>No page found</>,
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+
+  return <>
+    <RouterProvider router={router}/>
+  </>
 }
 
 export default App;

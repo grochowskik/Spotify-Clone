@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import { getData } from '../../../services/ApiSlice';
 
-export const useFeaturedPlaylistFetch = (artist_id: string) => {
+export const useFeaturedPlaylistFetch = () => {
   const { data, isLoading, isError, ...rest } = useQuery({
-    queryKey: ['artist'],
+    queryKey: ['getFeaturedPlaylist'],
     queryFn: () => getData('/v1/browse/featured-playlists'),
   });
 

@@ -1,7 +1,7 @@
 function LoginModal() {
   return (
     <>
-      <section className="absolute left-[calc(50%-16rem)] top-[calc(50%-16rem)] w-[32rem] h-[30rem] rounded-3xl bg-cyan-50 justify-between">
+      <section className="fixed left-[calc(50%-16rem)] top-[calc(50%-15rem)] w-[32rem] h-[30rem] rounded-3xl bg-cyan-50 justify-between">
         <div className="flex text-purple-600 text-4xl mt-8 justify-around font-medium">
           <a className="border-b-2 py-1 rounded border-purple-600 cursor-pointer">
             Login
