@@ -4,27 +4,46 @@ import HomePage from './pages/HomePage';
 import BrowsePage from './pages/BrowsePage';
 import ArtistPage from './pages/ArtistPage';
 import PlaylistPage from './pages/PlaylistPage';
+import AlbumPage from './pages/AlbumPage';
+import ErrorPage from './pages/ErrorPage';
+import Loader from './pages/Loader';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
-  },
+    element: <HomePage />, 
+    errorElement: <ErrorPage />,
+    loader: Loader ,
+  }, 
   {
     path: 'browse',
-    element: <BrowsePage />,
+    element: <BrowsePage />,    
+    errorElement: <ErrorPage />,
+    loader: Loader ,
   },
   {
-    path: 'artist',
-    element: <ArtistPage />,
+    path: 'artist/:id',
+    element: <ArtistPage />,    
+    errorElement: <ErrorPage />,
+    loader: Loader ,
   },
   {
-    path: 'playlist',
-    element: <PlaylistPage />,
+    path: 'playlist/:id',
+    element: <PlaylistPage />,    
+    errorElement: <ErrorPage />,
+    loader: Loader ,
+  },
+  {
+    path: '/album/:id',
+    element: <AlbumPage />,    
+    errorElement: <ErrorPage />,
+    loader: Loader ,
   },
   {
     path: '*',
-    element: <>No page found</>,
+    element: <>No page found</>,    
+    errorElement: <ErrorPage />,
+    loader: Loader ,
   },
 ]);
 

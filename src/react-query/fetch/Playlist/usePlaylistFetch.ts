@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { getData } from '../../../services/ApiSlice';
 
-export const useNewRealesesFetch = (params?: Record<string, string>) => {
+export const usePlaylistsFetch = (playlist_id: string) => {
   const { data, isLoading, isError, ...rest } = useQuery({
-    queryKey: ['getNewRealeses'],
-    queryFn: () => getData('/v1/browse/new-releases', params),
+    queryKey: ['getPlaylists'],
+    queryFn: () => getData(`/v1/playlists/${playlist_id}`),
   });
 
   return { data, isLoading, isError, ...rest };

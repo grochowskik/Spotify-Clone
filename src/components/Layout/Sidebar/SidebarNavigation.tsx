@@ -30,30 +30,6 @@ function SidebarNavigation() {
           >
             Ooh Eeh Ooh Ah Aah
           </a>
-          <a
-            href=""
-            className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
-          >
-            Ooh Eeh Ooh Ah Aah
-          </a>
-          <a
-            href=""
-            className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
-          >
-            Ooh Eeh Ooh Ah Aah
-          </a>{' '}
-          <a
-            href=""
-            className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
-          >
-            Ooh Eeh Ooh Ah Aah
-          </a>{' '}
-          <a
-            href=""
-            className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
-          >
-            Ooh Eeh Ooh Ah Aah
-          </a>
         </section>
       </div>
     </>

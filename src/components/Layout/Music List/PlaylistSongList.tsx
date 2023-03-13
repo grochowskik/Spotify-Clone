@@ -2,21 +2,17 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function MusicList({songsData}) {
-
-
-
-  const songs = songsData.tracks ?? songsData.items
-
+function PlaylistSongList({songsData}) {
+  
   return (
     <>
       <section className="mt-8 col-start-2 col-span-5">
-        {songs.map((song: any) => {
-          const minutes = Math.floor(song.duration_ms / 1000 / 60);
-          const seconds = song.duration_ms / 1000 - minutes * 60;
+        {songsData.items.map((song: any) => {
+          const minutes = Math.floor(song.track.duration_ms / 1000 / 60);
+          const seconds = song.track.duration_ms / 1000 - minutes * 60;
           return (
             <div
-              key={song.id}
+              key={song.track.id}
               className="flex justify-between border-spacing-1 border-t-2 border-zinc-700 h-16 hover:bg-neutral-700 rounded "
             >
               <div className="flex ">
@@ -28,9 +24,9 @@ function MusicList({songsData}) {
                   />
                 </a>
                 <div className=" text-cyan-50 px-1 my-auto items-start">
-                  <a className="mx-4">{song.artists[0].name}</a>
+                  <a className="mx-4">{song.track.artists[0].name}</a>
                   <a>-</a>
-                  <a className="mx-4">{song.name}</a>
+                  <a className="mx-4">{song.track.name}</a>
                 </div>
               </div>
               <div className="my-auto">
@@ -50,4 +46,4 @@ function MusicList({songsData}) {
   );
 }
 
-export default MusicList;
+export default PlaylistSongList;
