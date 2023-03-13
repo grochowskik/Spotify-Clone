@@ -18,13 +18,13 @@ function Header() {
         <span>
           <a
             href="/browse"
-            className="mx-4 px-4 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer"
+            className="mx-4 px-4 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer"
           >
             Browse
           </a>
           <button
             onClick={displayModalHandler}
-            className="mx-4 px-4 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer"
+            className="mx-4 px-4 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer"
           >
             Login
           </button>

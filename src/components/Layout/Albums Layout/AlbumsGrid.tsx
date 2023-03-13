@@ -1,15 +1,15 @@
 function AlbumsGrid({ albumData }) {
   return (
     <>
-      <section className="grid text-cyan-50 col-start-2 col-span-5 grid-cols-4 font-['Proxima Nova']">
+      <section className="grid text-cyan-200 col-start-2 col-span-5 grid-cols-4 font-['Proxima Nova']">
         {albumData.items[0].available_markets && (
-          <p className="col-span-4 text-zinc-500 border-b-2 border-zinc-700 text-2xl mx-4">
-            Check out latest realeses
+          <p className="col-span-4 border-b-2 border-zinc-400 text-xl mx-4 px-2">
+            Latest realeses
           </p>
         )}
         {albumData.items.map((album) => {
           return (
-            <div key={album.id} className="mx-auto my-4 text-zinc-300 ">
+            <div key={album.id} className="mx-auto my-4 ">
               <a href={'/album/' + album.id}>
                 <img
                   src={album.images[0].url}
@@ -33,7 +33,7 @@ function AlbumsGrid({ albumData }) {
         })}
       </section>
       <div className="col-start-2 col-span-5 text-center font-['Proxima Nova']">
-        <button className="m-4 px-5 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer text-cyan-50 text-xl ">
+        <button className="m-4 px-5 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer text-cyan-50 text-xl ">
           See more
         </button>
       </div>

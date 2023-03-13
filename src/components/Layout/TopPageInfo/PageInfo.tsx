@@ -34,7 +34,7 @@ function PageInfo({ data }) {
         </div>
         <FavoriteIcon
           className="my-auto hover:text-purple-600"
-          sx={{ fontSize: 64 }}
+          sx={{ fontSize: 44 }}
         />
       </section>
     </>

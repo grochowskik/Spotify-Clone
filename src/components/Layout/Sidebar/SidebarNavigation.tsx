@@ -14,20 +14,20 @@ function SidebarNavigation() {
           <SearchIcon fontSize="large" color="secondary" />
         </section>
         <section className="grid gap-4 text-cyan-50 mb-12">
-          <a className=" px-4 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer font-medium text-s">
+          <a className=" px-4 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer font-medium text-s">
             Favourites
           </a>
-          <a className="px-4 py-1 rounded-2xl bg-purple-900 hover:bg-purple-800 cursor-pointer font-medium">
+          <a className="px-4 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer font-medium">
             New Playlist
           </a>
         </section>
-        <div className="text-zinc-500 font-['Proxima Nova'] border-b-2 border-zinc-700">
+        <div className="text-zinc-500 font-['Proxima Nova'] border-b-[1px] border-zinc-700">
           <a className="relative left-5">Playlists</a>
         </div>
         <section className="grid">
           <a
             href="/artist"
-            className=" text-cyan-50 border-b-2 border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
+            className=" text-cyan-50 border-b-[1px] border-zinc-700 h-10 leading-10 hover:bg-neutral-700 px-1"
           >
             Ooh Eeh Ooh Ah Aah
           </a>
