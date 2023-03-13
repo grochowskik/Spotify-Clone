@@ -36,7 +36,9 @@ function MusicList({ songsData }) {
                   )}
                 </a>
                 <div className=" text-cyan-50 px-1 my-auto items-start">
-                  <a className="mx-4">{song.artists[0].name}</a>
+                  <a href={'/artist/' + song.artists[0].id} className="mx-4">
+                    {song.artists[0].name}
+                  </a>
                   <a>-</a>
                   <a className="mx-4">{song.name}</a>
                 </div>

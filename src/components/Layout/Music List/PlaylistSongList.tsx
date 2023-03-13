@@ -6,6 +6,7 @@ import { useState } from 'react';
 function PlaylistSongList({ songsData }) {
   const [isPlaying, setPlaying] = useState<boolean>(false);
 
+  console.log(songsData.items);
   return (
     <>
       <section className="mt-8 col-start-2 col-span-5">
@@ -35,7 +36,12 @@ function PlaylistSongList({ songsData }) {
                   )}
                 </a>
                 <div className=" text-cyan-50 px-1 my-auto items-start">
-                  <a className="mx-4">{song.track.artists[0].name}</a>
+                  <a
+                    href={'/artist/' + song.track.artists[0].id}
+                    className="mx-4"
+                  >
+                    {song.track.artists[0].name}
+                  </a>
                   <a>-</a>
                   <a className="mx-4">{song.track.name}</a>
                 </div>

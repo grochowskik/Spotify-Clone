@@ -1,14 +1,15 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function PageInfo({ data }) {
-  console.log(data);
-
   return (
     <>
       <section className="flex text-cyan-50 col-start-2 col-span-5 h-40 my-8 justify-between mx-16">
         <div className="flex ">
           {data.images[0].url && (
-            <img src={data.images[0].url} className="rounded-full" />
+            <img
+              src={data.images[0].url}
+              className="rounded-full border-2 border-purple-900"
+            />
           )}
           <div className="my-auto mx-6">
             <span className="text text-6xl font-semibold">{data.name}</span>
