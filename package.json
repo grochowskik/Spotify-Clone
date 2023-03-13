@@ -22,7 +22,9 @@
     "react-query": "^3.39.3",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.8.2",
-    "react-spotify-web-playback": "^0.13.1"
+    "react-spotify-web-playback": "^0.13.2",
+    "spotify-uri": "^3.0.3",
+    "spotify-url-info": "^3.2.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

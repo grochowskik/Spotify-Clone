@@ -7,7 +7,6 @@ function MusicList({ songsData }) {
   const [isPlaying, setPlaying] = useState();
 
   const songs = songsData.tracks ?? songsData.items;
-
   return (
     <>
       <section className="mt-8 col-start-2 col-span-5">

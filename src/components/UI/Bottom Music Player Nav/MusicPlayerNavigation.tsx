@@ -4,6 +4,7 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import { useTrackFetch } from '../../../react-query/fetch/Tracks/useTrackFetch';
 
@@ -24,9 +25,14 @@ function MusicPlayerNavigation() {
   };
 
   return (
-    <div className=" bg-neutral-900 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
-      <div className=" text-cyan-50 px-10 my-auto">
-        Starszy x Oesa - Nasze Bloki
+    <div className=" bg-transparent backdrop-blur-xl backdrop-brightness-125 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
+      <div className="flex text-cyan-50 px-10 my-auto">
+        <p>Starszy x Oesa - Nasze Bloki</p>
+        <FavoriteIcon
+          color="secondary"
+          className="hover:text-neutral-300 cursor-pointer mx-2"
+          sx={{ fontSize: 24 }}
+        />
       </div>
       <div className="flex gap-6 justify-center my-auto">
         <a className="my-auto">

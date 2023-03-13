@@ -4,7 +4,7 @@ import { useSearchResultsFetch } from '../../../react-query/fetch/Search/useSear
 function SidebarNavigation() {
   return (
     <>
-      <div className="absolute mx-6 mt-14">
+      <div className="absolute mx-6 mt-14 ">
         <section className="my-10 flex mb-32">
           {/* <label>Szukaj</label> */}
           <input
@@ -21,7 +21,7 @@ function SidebarNavigation() {
             New Playlist
           </a>
         </section>
-        <div className="text-zinc-500 font-mono border-b-2 border-zinc-700">
+        <div className="text-zinc-500 font-['Proxima Nova'] border-b-2 border-zinc-700">
           <a className="relative left-5">Playlists</a>
         </div>
         <section className="grid">

@@ -1,4 +1,4 @@
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function PageInfo({ data }) {
   console.log(data);
@@ -31,7 +31,7 @@ function PageInfo({ data }) {
             </div>
           </div>
         </div>
-        <PlayArrowIcon
+        <FavoriteIcon
           className="my-auto hover:text-purple-600"
           sx={{ fontSize: 64 }}
         />
