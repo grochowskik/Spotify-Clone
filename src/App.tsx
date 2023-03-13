@@ -11,47 +11,48 @@ import Loader from './pages/Loader';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />, 
+    element: <HomePage />,
     errorElement: <ErrorPage />,
-    loader: Loader ,
-  }, 
+    loader: Loader,
+  },
   {
     path: 'browse',
-    element: <BrowsePage />,    
+    element: <BrowsePage />,
     errorElement: <ErrorPage />,
-    loader: Loader ,
+    loader: Loader,
   },
   {
     path: 'artist/:id',
-    element: <ArtistPage />,    
+    element: <ArtistPage />,
     errorElement: <ErrorPage />,
-    loader: Loader ,
+    loader: Loader,
   },
   {
     path: 'playlist/:id',
-    element: <PlaylistPage />,    
+    element: <PlaylistPage />,
     errorElement: <ErrorPage />,
-    loader: Loader ,
+    loader: Loader,
   },
   {
     path: '/album/:id',
-    element: <AlbumPage />,    
+    element: <AlbumPage />,
     errorElement: <ErrorPage />,
-    loader: Loader ,
+    loader: Loader,
   },
   {
     path: '*',
-    element: <>No page found</>,    
+    element: <>No page found</>,
     errorElement: <ErrorPage />,
-    loader: Loader ,
+    loader: Loader,
   },
 ]);
 
 function App() {
-
-  return <>
-    <RouterProvider router={router}/>
-  </>
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

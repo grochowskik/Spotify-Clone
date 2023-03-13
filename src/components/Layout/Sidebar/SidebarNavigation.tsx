@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import { useSearchResultsFetch } from '../../../react-query/fetch/Search/useSearchResultsFetch';
 
 function SidebarNavigation() {
   return (

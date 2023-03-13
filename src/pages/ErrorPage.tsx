@@ -1,11 +1,10 @@
 function ErrorPage() {
-    return (
+  return (
     <>
-        <p>Oops, something went wrong</p>    
-        <button>Listen</button>
+      <p>Oops, something went wrong</p>
+      <button>Listen</button>
     </>
-    );
-  }
-  
-  export default ErrorPage;
-  
+  );
+}
+
+export default ErrorPage;

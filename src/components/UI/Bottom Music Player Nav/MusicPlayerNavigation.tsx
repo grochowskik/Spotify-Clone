@@ -5,13 +5,24 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { useState } from 'react';
+import { useTrackFetch } from '../../../react-query/fetch/Tracks/useTrackFetch';
 
 function MusicPlayerNavigation() {
   const [isPlaying, setPlaying] = useState<boolean>(false);
 
-  const pauseSongHandler = () => {
+  // const { data, isLoading, isError } = useTrackFetch('');
+
+  // if (isLoading) {
+  //   return <h1>Loading</h1>;
+  // }
+  // if (isError) {
+  //   return <h1>Error</h1>;
+  // }
+
+  const playSongHandler = () => {
     setPlaying((prevState) => !prevState);
   };
+
   return (
     <div className=" bg-neutral-900 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
       <div className=" text-cyan-50 px-10 my-auto">
@@ -32,7 +43,7 @@ function MusicPlayerNavigation() {
             className="hover:text-neutral-300 cursor-pointer"
           />
         </a>
-        <a onClick={pauseSongHandler} className="my-auto">
+        <a onClick={playSongHandler} className="my-auto">
           {isPlaying && (
             <PauseIcon
               fontSize="large"

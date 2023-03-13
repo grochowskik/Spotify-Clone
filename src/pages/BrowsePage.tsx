@@ -7,20 +7,28 @@ import { useFeaturedPlaylistFetch } from '../react-query/fetch/Browse/useFeature
 import { useNewRealesesFetch } from '../react-query/fetch/Browse/useNewRealesesFetch';
 
 function BrowsePage() {
+  const featuredPlaylistData = useFeaturedPlaylistFetch({
+    limit: '4',
+    offset: '0',
+  });
+  const newReleasesData = useNewRealesesFetch({ limit: '4', offset: '0' });
 
-  const featuredPlaylistData = useFeaturedPlaylistFetch({limit: '4', offset: '0'})
-  const newReleasesData = useNewRealesesFetch({limit: '4', offset: '0'})
-
-  if (featuredPlaylistData.isLoading || newReleasesData.isLoading) {return <h1>Loading</h1>}
-  if (featuredPlaylistData.isError || newReleasesData.isError) {return <h1>Error</h1>}
+  if (featuredPlaylistData.isLoading || newReleasesData.isLoading) {
+    return <h1>Loading</h1>;
+  }
+  if (featuredPlaylistData.isError || newReleasesData.isError) {
+    return <h1>Error</h1>;
+  }
 
   return (
     <>
       <Header />
       <div className="grid grid-cols-7 h-[calc(100%-10rem)] mb-24">
         <SidebarNavigation />
-        <FeaturedPlaylists featuredPlaylists={featuredPlaylistData.data.playlists}/>
-        <AlbumsGrid albumData={newReleasesData.data.albums}/>
+        <FeaturedPlaylists
+          featuredPlaylists={featuredPlaylistData.data.playlists}
+        />
+        <AlbumsGrid albumData={newReleasesData.data.albums} />
       </div>
       <MusicPlayerNavigation />
     </>

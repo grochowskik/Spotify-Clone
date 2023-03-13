@@ -1,22 +1,30 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import { useState } from 'react'
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from 'pure-react-carousel';
+import { useState } from 'react';
 
-function AlbumCarousel({artistData}) {
+function AlbumCarousel({ artistData }) {
+  console.log(artistData);
 
-  console.log(artistData)
+  const [index, setIndex] = useState<number>(0);
 
-  const [index, setIndex] = useState<number>(0); 
-    
   const handlePrevious = () => {
-    setIndex((prevIndex) => {prevIndex - 1});
+    setIndex((prevIndex) => {
+      prevIndex - 1;
+    });
   };
-    
+
   const handleNext = () => {
-    setIndex((prevIndex) => {prevIndex + 1});
+    setIndex((prevIndex) => {
+      prevIndex + 1;
+    });
   };
-    
 
   return (
     <>
@@ -40,24 +48,31 @@ function AlbumCarousel({artistData}) {
       </section> */}
       <section className="grid text-cyan-50 col-start-2 col-span-5 h-40 mx-10 mb-8">
         <CarouselProvider
-        naturalSlideWidth={10}
-        naturalSlideHeight={12}
-        totalSlides={artistData.total}
+          naturalSlideWidth={10}
+          naturalSlideHeight={12}
+          totalSlides={artistData.total}
         >
-        <ButtonBack>Back</ButtonBack>
-        <Slider>
-          {artistData.items.map((album: any) => { 
-          return ( 
-          <Slide index={0}>
-            <a href={'/album/' + album.id} key={album.id} className='flex cursor-pointer'>
-              <img src={album.images[0].url} alt="album cover"/>
-              <p>{album.name}</p>
-            </a></Slide>)})}
-        </Slider>
-        <ButtonNext>Next</ButtonNext>
+          <ButtonBack>Back</ButtonBack>
+          <Slider>
+            {artistData.items.map((album: any) => {
+              return (
+                <Slide index={0}>
+                  <a
+                    href={'/album/' + album.id}
+                    key={album.id}
+                    className="flex cursor-pointer"
+                  >
+                    <img src={album.images[0].url} alt="album cover" />
+                    <p>{album.name}</p>
+                  </a>
+                </Slide>
+              );
+            })}
+          </Slider>
+          <ButtonNext>Next</ButtonNext>
         </CarouselProvider>
-      </section> 
+      </section>
     </>
   );
-};
+}
 export default AlbumCarousel;

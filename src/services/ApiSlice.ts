@@ -1,4 +1,4 @@
-import { API_ID } from "./config";
+import { API_ID } from './config';
 
 const options = {
   method: 'GET',
