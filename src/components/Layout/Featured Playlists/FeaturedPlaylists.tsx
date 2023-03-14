@@ -1,25 +1,28 @@
 function FeaturedPlaylists({ featuredPlaylists }) {
+
   return (
     <>
-      <section className="grid text-cyan-200 col-start-2 col-span-5 grid-cols-4 mt-12 font-['Proxima Nova']">
-        <p className="col-span-4 border-b-2 border-cyan-400 text-xl mx-4 px-2">
+      <section className="w-[100%-230px] text-cyan-200 mt-12 font-['Proxima Nova'] mx-auto sm:mx-12 2xl:mx-0 text-left xs:text-center">
+        <p className="border-b-2 border-cyan-400 text-xl mx-4 px-2">
           Your favourite songs
         </p>
         {featuredPlaylists.items.map((playlist) => {
           return (
-            <a
-              href={'/playlist/' + playlist.id}
-              key={playlist.id}
-              className="mx-auto my-4 "
-            >
-              <img
-                src={playlist.images[0].url}
-                width="300"
-                alt="playlist cover"
-                className="rounded-xl"
-              />
-              <p className="text-md mt-2">{playlist.name}</p>
-            </a>
+              <a 
+                href={'/playlist/' + playlist.id}
+                key={playlist.id}
+                className="inline-flex xs:inline-grid mt-4 p-2 lg:p-4 [&>p]:hover:visible md:[&>p]:invisible md:[&>p]:hover:visible mx-4 md:mx-2"
+                >
+                <figure className="overflow-hidden w-[100px] xs:w-[175px] md:w-[300px] rounded-xl ">
+                  <img
+                    src={playlist.images[0].url}
+                    width="300"
+                    alt="playlist cover"
+                    className="rounded-xl transition ease-in-out duration-300 w-[100px] xs:w-[175px] md:w-[300px] sm:hover:scale-110"
+                    />
+                </figure>
+                <p className="text-md my-auto text-left xs:text-center mx-4 xs:mx-0">{playlist.name}</p>
+              </a>
           );
         })}
       </section>

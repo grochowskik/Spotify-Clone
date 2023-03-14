@@ -34,22 +34,19 @@ function ArtistPage() {
   ) {
     return <h1>Error</h1>;
   }
-  console.log(artistData.data);
 
   return (
     <>
-      <div>
         <Header />
-        <div className="grid grid-cols-7 h-[calc(100%-10rem)] mb-24">
+        <div className="flex h-[calc(100%-10rem)] mb-24">
           <SidebarNavigation />
-
-          <PageInfo data={artistData.data} />
-          <AlbumsGrid albumData={artistAlbumsData.data} />
-
-          <MusicList songsData={artistTopSongsData.data} />
+          <div>
+            <PageInfo data={artistData.data} />
+            <AlbumsGrid albumData={artistAlbumsData.data} />
+            <MusicList songsData={artistTopSongsData.data} />
+          </div>
         </div>
         <MusicPlayerNavigation />
-      </div>
     </>
   );
 }

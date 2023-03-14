@@ -23,12 +23,15 @@ function BrowsePage() {
   return (
     <>
       <Header />
-      <div className="grid grid-cols-7 h-[calc(100%-10rem)] mb-24">
+      <div className="flex h-[calc(100%-10rem)] mb-24">
         <SidebarNavigation />
-        <FeaturedPlaylists
-          featuredPlaylists={featuredPlaylistData.data.playlists}
-        />
-        <AlbumsGrid albumData={newReleasesData.data.albums} />
+        <div>
+          <FeaturedPlaylists
+            featuredPlaylists={featuredPlaylistData.data.playlists}
+            />
+          <AlbumsGrid albumData={newReleasesData.data.albums} />
+        </div>
+
       </div>
       <MusicPlayerNavigation />
     </>

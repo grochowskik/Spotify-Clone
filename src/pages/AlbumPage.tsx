@@ -20,12 +20,12 @@ function AlbumPage() {
   return (
     <>
       <Header />
-
-      <div className="grid grid-cols-7 h-[calc(100%-10rem)] mb-24">
+      <div className="flex h-[calc(100%-10rem)] mb-24">
         <SidebarNavigation />
-
-        <PageInfo data={albumData.data} />
-        <MusicList songsData={albumData.data.tracks} />
+        <div>
+          <PageInfo data={albumData.data} />
+          <MusicList songsData={albumData.data.tracks} />
+        </div>
       </div>
       <MusicPlayerNavigation />
     </>

@@ -3,16 +3,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 function PageInfo({ data }) {
   return (
     <>
-      <section className="flex text-cyan-50 col-start-2 col-span-5 h-40 my-8 justify-between mx-16">
+      <section className="flex text-cyan-50 h-40 my-8 justify-between mx-0  sm:mx-16 sm:w-[100%-230px]">
         <div className="flex ">
           {data.images[0].url && (
             <img
               src={data.images[0].url}
-              className="rounded-full border-2 border-purple-900"
+              className="rounded-full border-2 border-purple-900 hidden sm:block"
             />
           )}
-          <div className="my-auto mx-6">
-            <span className="text text-6xl font-semibold">{data.name}</span>
+          <div className="my-auto mx-4 sm:mx-6">
+            <span className="text-3xl font-semibold">{data.name}</span>
             <div className="flex mt-4">
               {data.artists && (
                 <a href={'/artist/' + data.artists[0].id} className="mr-8">
@@ -32,10 +32,11 @@ function PageInfo({ data }) {
             </div>
           </div>
         </div>
+        <div className="sm:mx-0 mr-4 my-auto hover:text-purple-600 hidden xs:block cursor-pointer">
         <FavoriteIcon
-          className="my-auto hover:text-purple-600"
           sx={{ fontSize: 44 }}
         />
+        </div>
       </section>
     </>
   );
