@@ -37,16 +37,16 @@ function ArtistPage() {
 
   return (
     <>
-        <Header />
-        <div className="flex h-[calc(100%-10rem)] mb-24">
-          <SidebarNavigation />
-          <div>
-            <PageInfo data={artistData.data} />
-            <AlbumsGrid albumData={artistAlbumsData.data} />
-            <MusicList songsData={artistTopSongsData.data} />
-          </div>
+      <Header />
+      <div className="flex h-[calc(100%-10rem)] mb-24">
+        <SidebarNavigation />
+        <div>
+          <PageInfo data={artistData.data} />
+          <AlbumsGrid albumData={artistAlbumsData.data} />
+          <MusicList songsData={artistTopSongsData.data} />
         </div>
-        <MusicPlayerNavigation />
+      </div>
+      <MusicPlayerNavigation />
     </>
   );
 }

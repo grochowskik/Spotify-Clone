@@ -1,6 +1,6 @@
 import { API_ID } from './config';
 
-const options = {
+export const options = {
   method: 'GET',
   headers: {
     Accept: 'application/json',
@@ -8,7 +8,7 @@ const options = {
   },
 };
 
-const BASE_API_URL = 'https://api.spotify.com';
+export const BASE_API_URL = 'https://api.spotify.com';
 
 export const getData = (path: string, params?: Record<string, string>) => {
   const searchParams = new URLSearchParams(params);

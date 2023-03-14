@@ -18,46 +18,47 @@ function MusicList({ songsData }) {
               key={song.id}
               className="inline-flex justify-between border-t-2 border-zinc-700 hover:backdrop-brightness-[1.4] py-4 rounded w-full sm:w-[100%-230px]"
             >
-
-                <div className='flex'>
-                  <a className="mx-2 sm:mx-6 my-auto">
-                    {!isPlaying && (
-                      <PlayArrowIcon
-                      fontSize="large"
-                      color="inherit"
-                        className="hover:text-purple-600 text-neutral-100 cursor-pointer"
-                      />
-                      )}
-                    {isPlaying && (
-                      <PauseIcon
+              <div className="flex">
+                <a className="mx-2 sm:mx-6 my-auto">
+                  {!isPlaying && (
+                    <PlayArrowIcon
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
-                      />
-                      )}
+                    />
+                  )}
+                  {isPlaying && (
+                    <PauseIcon
+                      fontSize="large"
+                      color="inherit"
+                      className="hover:text-purple-600 text-neutral-100 cursor-pointer"
+                    />
+                  )}
+                </a>
+                <div className=" overflow-hidden  text-cyan-50 px-1 my-auto items-start">
+                  <a
+                    href={'/artist/' + song.artists[0].id}
+                    className="mx-1 sm:mx-2"
+                  >
+                    {song.artists[0].name}
                   </a>
-                  <div className=" overflow-hidden  text-cyan-50 px-1 my-auto items-start">
-                    <a href={'/artist/' + song.artists[0].id} className="mx-1 sm:mx-2">
-                      {song.artists[0].name}
-                    </a>
-                    <a>-</a>
-                    <a className="mx-1 sm:mx-2">{song.name}</a>
-                  </div>
-                </div>
-                <div className="flex my-auto mx-6 hidden sm:block">
-                  <FavoriteIcon
-                    color="inherit"
-                    className="hover:text-purple-600 text-neutral-100 cursor-pointer mr-2"
-                  />
-                  <a className=" text-cyan-50">{`${minutes}:${Math.round(
-                    seconds
-                  ).toLocaleString('en-US', {
-                    minimumIntegerDigits: 2,
-                    useGrouping: false,
-                  })}`}</a>
+                  <a>-</a>
+                  <a className="mx-1 sm:mx-2">{song.name}</a>
                 </div>
               </div>
-
+              <div className="flex my-auto mx-6 hidden sm:block">
+                <FavoriteIcon
+                  color="inherit"
+                  className="hover:text-purple-600 text-neutral-100 cursor-pointer mr-2"
+                />
+                <a className=" text-cyan-50">{`${minutes}:${Math.round(
+                  seconds
+                ).toLocaleString('en-US', {
+                  minimumIntegerDigits: 2,
+                  useGrouping: false,
+                })}`}</a>
+              </div>
+            </div>
           );
         })}
       </section>

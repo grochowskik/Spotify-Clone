@@ -33,9 +33,7 @@ function PageInfo({ data }) {
           </div>
         </div>
         <div className="sm:mx-0 mr-4 my-auto hover:text-purple-600 hidden xs:block cursor-pointer">
-        <FavoriteIcon
-          sx={{ fontSize: 44 }}
-        />
+          <FavoriteIcon sx={{ fontSize: 44 }} />
         </div>
       </section>
     </>

@@ -28,10 +28,9 @@ function BrowsePage() {
         <div>
           <FeaturedPlaylists
             featuredPlaylists={featuredPlaylistData.data.playlists}
-            />
+          />
           <AlbumsGrid albumData={newReleasesData.data.albums} />
         </div>
-
       </div>
       <MusicPlayerNavigation />
     </>

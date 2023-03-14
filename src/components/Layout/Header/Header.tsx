@@ -15,7 +15,7 @@ function Header() {
         <a href="/" className="ml-10 font-mono text-4xl cursor-pointer">
           DUGLERIFY
         </a>
-        <span className='mr-20'>
+        <span className="mr-20">
           <a
             href="/browse"
             className="mr-4 px-4 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer"
