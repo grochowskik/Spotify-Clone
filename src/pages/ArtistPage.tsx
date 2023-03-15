@@ -8,8 +8,10 @@ import { useArtistTopSongsFetch } from '../react-query/fetch/Artist/useArtistTop
 import { useArtistsAlbumsFetch } from '../react-query/fetch/Artist/useArtistsAlbumsFetch';
 import { useArtistFetch } from '../react-query/fetch/Artist/useArtistFetch';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 function ArtistPage() {
+  const [songData, setSongData] = useState(null);
   const params = useParams();
 
   const artistTopSongsData = useArtistTopSongsFetch(params.id!);
@@ -17,6 +19,11 @@ function ArtistPage() {
     limit: '4',
     offset: '0',
   });
+
+  const findSongHandler = (ID) => {
+    setSongData(null);
+    setSongData(artistTopSongsData.data.tracks.find(({ id }) => id === ID));
+  };
 
   const artistData = useArtistFetch(params.id!);
 
@@ -43,10 +50,13 @@ function ArtistPage() {
         <div>
           <PageInfo data={artistData.data} />
           <AlbumsGrid albumData={artistAlbumsData.data} />
-          <MusicList songsData={artistTopSongsData.data} />
+          <MusicList
+            songsData={artistTopSongsData.data}
+            findSongHandler={findSongHandler}
+          />
         </div>
       </div>
-      <MusicPlayerNavigation />
+      <MusicPlayerNavigation songData={songData} />
     </>
   );
 }

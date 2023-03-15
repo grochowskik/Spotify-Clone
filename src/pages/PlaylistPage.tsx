@@ -5,8 +5,10 @@ import SidebarNavigation from '../components/Layout/Sidebar/SidebarNavigation';
 import PageInfo from '../components/Layout/TopPageInfo/PageInfo';
 import { usePlaylistsFetch } from '../react-query/fetch/Playlist/usePlaylistFetch';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 function PlaylistPage() {
+  const [songData, setSongData] = useState(null);
   const params = useParams();
 
   const playlistData = usePlaylistsFetch(params.id!);
@@ -18,6 +20,13 @@ function PlaylistPage() {
     return <h1>Error</h1>;
   }
 
+  const findSongHandler = (ID) => {
+    setSongData(null);
+    setSongData(
+      playlistData.data.tracks.items.find((song) => song.track.id === ID).track
+    );
+  };
+
   return (
     <>
       <Header />
@@ -25,10 +34,13 @@ function PlaylistPage() {
         <SidebarNavigation />
         <div>
           <PageInfo data={playlistData.data} />
-          <PlaylistSongList songsData={playlistData.data.tracks} />
+          <PlaylistSongList
+            songsData={playlistData.data.tracks}
+            findSongHandler={findSongHandler}
+          />
         </div>
       </div>
-      <MusicPlayerNavigation />
+      <MusicPlayerNavigation songData={songData} />
     </>
   );
 }

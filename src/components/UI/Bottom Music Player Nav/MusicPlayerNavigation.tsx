@@ -5,34 +5,43 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
-import { useTrackFetch } from '../../../react-query/fetch/Tracks/useTrackFetch';
+import { useState, useRef } from 'react';
 
-function MusicPlayerNavigation() {
+function MusicPlayerNavigation({ songData }) {
   const [isPlaying, setPlaying] = useState<boolean>(false);
+  const audioRef = useRef();
 
-  // const { data, isLoading, isError } = useTrackFetch('');
-
-  // if (isLoading) {
-  //   return <h1>Loading</h1>;
-  // }
-  // if (isError) {
-  //   return <h1>Error</h1>;
-  // }
-
-  const playSongHandler = () => {
+  const playPauseHandler = () => {
     setPlaying((prevState) => !prevState);
+    if (!isPlaying && songData) audioRef.current!.play();
+    if (isPlaying && songData) audioRef.current!.pause();
   };
 
   return (
     <div className=" bg-transparent backdrop-blur-xl backdrop-brightness-125 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
+      <audio ref={audioRef} src={songData?.preview_url} preload="none" />
       <div className="flex text-cyan-50 px-10 my-auto">
-        <p>Starszy x Oesa - Nasze Bloki</p>
-        <FavoriteIcon
-          color="secondary"
-          className="hover:text-neutral-300 cursor-pointer mx-2"
-          sx={{ fontSize: 24 }}
-        />
+        {songData && (
+          <>
+            <p className="mr-2 line-clamp-1 overflow-hidden">
+              {songData.artists.map((artist) => {
+                return (
+                  <a key={artist.id} href={'/artist/' + artist.id}>
+                    {artist.name + ' '}
+                  </a>
+                );
+              })}
+            </p>
+            <p>-</p>
+            <p className="ml-2 line-clamp-1">{songData.name}</p>
+
+            <FavoriteIcon
+              color="secondary"
+              className="hover:text-neutral-300 cursor-pointer mx-2"
+              sx={{ fontSize: 24 }}
+            />
+          </>
+        )}
       </div>
       <div className="flex gap-6 justify-center my-auto">
         <a className="my-auto">
@@ -49,7 +58,7 @@ function MusicPlayerNavigation() {
             className="hover:text-neutral-300 cursor-pointer"
           />
         </a>
-        <a onClick={playSongHandler} className="my-auto">
+        <a className="my-auto" onClick={playPauseHandler}>
           {isPlaying && (
             <PauseIcon
               fontSize="large"

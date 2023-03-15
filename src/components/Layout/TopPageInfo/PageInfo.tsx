@@ -3,7 +3,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 function PageInfo({ data }) {
   return (
     <>
-      <section className="flex text-cyan-50 h-40 my-8 justify-between mx-0  sm:mx-16 sm:w-[100%-230px]">
+      <section className="flex text-cyan-50 h-40 my-8 justify-between mx-0  sm:mx-16 sm:w-[100%-230px] ">
         <div className="flex ">
           {data.images[0].url && (
             <img

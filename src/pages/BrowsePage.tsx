@@ -25,6 +25,7 @@ function BrowsePage() {
       <Header />
       <div className="flex h-[calc(100%-10rem)] mb-24">
         <SidebarNavigation />
+
         <div>
           <FeaturedPlaylists
             featuredPlaylists={featuredPlaylistData.data.playlists}

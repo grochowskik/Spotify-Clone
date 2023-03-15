@@ -5,8 +5,11 @@ import SidebarNavigation from '../components/Layout/Sidebar/SidebarNavigation';
 import PageInfo from '../components/Layout/TopPageInfo/PageInfo';
 import { useAlbumFetch } from '../react-query/fetch/Albums/useAlbumFetch';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 function AlbumPage() {
+  const [songData, setSongData] = useState(null);
+  const [searchData, setSearchData] = useState(null);
   const params = useParams();
   const albumData = useAlbumFetch(params.id!);
 
@@ -17,17 +20,32 @@ function AlbumPage() {
     return <h1>Error</h1>;
   }
 
+  const searchSongHandler = (ID) => {
+    setSearchData(null);
+    setSearchData(albumData.data.tracks.items.find(({ id }) => id === ID));
+  };
+
+  const findSongHandler = (ID) => {
+    setSongData(null);
+    setSongData(albumData.data.tracks.items.find(({ id }) => id === ID));
+  };
+
   return (
     <>
-      <Header />
-      <div className="flex h-[calc(100%-10rem)] mb-24">
-        <SidebarNavigation />
-        <div>
-          <PageInfo data={albumData.data} />
-          <MusicList songsData={albumData.data.tracks} />
+      <div className="">
+        <Header />
+        <div className="flex h-[calc(100%-10rem)] mb-24">
+          <SidebarNavigation searchSongHandler={searchSongHandler} />
+          <div>
+            <PageInfo data={albumData.data} />
+            <MusicList
+              songsData={albumData.data.tracks}
+              findSongHandler={findSongHandler}
+            />
+          </div>
         </div>
+        <MusicPlayerNavigation songData={songData} />
       </div>
-      <MusicPlayerNavigation />
     </>
   );
 }

@@ -11,7 +11,7 @@ function Header() {
   return (
     <>
       {isModal && <LoginModal />}
-      <header className="sticky top-0 w-screen h-20 text-cyan-50 text-xl bg-neutral-900 items-center flex justify-between z-10">
+      <header className="sticky top-0 w-screen h-20 text-cyan-50 text-xl bg-neutral-900 items-center flex justify-between z-10 ">
         <a href="/" className="ml-10 font-mono text-4xl cursor-pointer">
           DUGLERIFY
         </a>

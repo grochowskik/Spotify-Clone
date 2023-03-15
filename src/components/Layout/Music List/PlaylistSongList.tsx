@@ -3,7 +3,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 
-function PlaylistSongList({ songsData }) {
+function PlaylistSongList({ songsData, findSongHandler }) {
   const [isPlaying, setPlaying] = useState<boolean>(false);
 
   return (
@@ -18,7 +18,11 @@ function PlaylistSongList({ songsData }) {
               className="inline-flex justify-between border-spacing-1 border-t-2 border-zinc-700 h-16 hover:backdrop-brightness-[1.4] py-4 rounded w-full sm:w-[100%-230px]"
             >
               <div className="flex">
-                <a className="mx-2 sm:mx-6 my-auto">
+                <a
+                  id={song.track.id}
+                  className="mx-2 sm:mx-6 my-auto"
+                  onClick={(event) => findSongHandler(event.currentTarget.id)}
+                >
                   {!isPlaying && (
                     <PlayArrowIcon
                       fontSize="large"
@@ -34,18 +38,25 @@ function PlaylistSongList({ songsData }) {
                     />
                   )}
                 </a>
-                <div className="relative overflow-hidden text-cyan-50 px-1 my-auto items-start sm:text-md ">
-                  <a
-                    href={'/artist/' + song.track.artists[0].id}
-                    className="mx-1 sm:mx-2"
-                  >
-                    {song.track.artists[0].name}
-                  </a>
+                <section className="flex text-cyan-50 px-1 my-auto items-start sm:text-md">
+                  <div className=" line-clamp-1">
+                    {song.track.artists.map((artist) => {
+                      return (
+                        <a
+                          key={artist.id}
+                          href={'/artist/' + artist.id}
+                          className="mx-1"
+                        >
+                          {artist.name}
+                        </a>
+                      );
+                    })}
+                  </div>
                   <a>-</a>
-                  <a className="mx-1 sm:mx-2">{song.track.name}</a>
-                </div>
+                  <p className="mx-1 sm:mx-2">{song.track.name}</p>
+                </section>
               </div>
-              <div className="flex my-auto mx-6 hidden sm:block">
+              <div className="my-auto mx-6 hidden sm:flex">
                 <FavoriteIcon
                   color="inherit"
                   className="hover:text-purple-600 text-neutral-100 cursor-pointer mr-2"

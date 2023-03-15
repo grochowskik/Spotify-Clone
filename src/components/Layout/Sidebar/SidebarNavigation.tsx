@@ -1,48 +1,31 @@
-import { BASE_API_URL, options } from '../../../services/ApiSlice';
-import SearchIcon from '@mui/icons-material/Search';
-import { useEffect, useState } from 'react';
+import SearchResults from '../../UI/Search Results/SearchResults';
+import { useState, useRef } from 'react';
 
-function SidebarNavigation() {
+function SidebarNavigation({ searchSongHandler }) {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [data, setData] = useState(null);
 
-  const path = '/v1/search';
-  const params = {
-    q: searchQuery,
-    type: 'artist,track,album',
-    limit: '4',
+  const inputRef = useRef('');
+  const refHandler = () => {
+    setSearchQuery(inputRef.current.value);
   };
-  const url = new URL(path, BASE_API_URL);
-  const searchParams = new URLSearchParams(params);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (searchQuery) {
-        fetch(`${url.toString()}?${searchParams.toString()}`, options)
-          .then((res) => res.json())
-          .then((data) => setData(data));
-      }
-    }, 400);
-    return () => clearTimeout(timeout);
-  }, [searchQuery]);
-
-  console.log(data);
   return (
     <>
-      <div className=" hidden w-[230px] mx-6 mt-14 lg:block">
+      <div className="shrink-0 hidden w-[230px] mx-6 mt-14 lg:inline-block">
         <section className="mt-10 flex">
           <input
+            ref={inputRef}
             placeholder="Search"
             type="text"
             className="block px-4 py-2 bg-neutral-700 rounded-2xl text-cyan-50 w-full text-sm focus:outline-none"
-            onChange={(event) => setSearchQuery(event.target.value)}
+            onChange={refHandler}
+            // onChange={(event) => setSearchQuery(event.target.value)}
           />
         </section>
-        {data && (
-          <section className="bg-cyan-50 opacity-90 rounded-b-lg text-cyan-900 absolute w-[230px]">
-            dupsko
-          </section>
-        )}
+        <SearchResults
+          searchQuery={searchQuery}
+          searchSongHandler={searchSongHandler}
+        />
         <section className=" text-cyan-50 mb-12 mt-32">
           <p className="px-4 py-1 my-2 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer font-medium">
             Favourites
