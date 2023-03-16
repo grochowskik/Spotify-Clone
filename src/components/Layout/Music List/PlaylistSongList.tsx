@@ -2,14 +2,15 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
+import { PlaylistProps, Artist } from '../../../react-query/fetch/Playlist/usePlaylistFetch';
 
-function PlaylistSongList({ songsData, findSongHandler, isActive}) {
+const PlaylistSongList = ({ songs, findSongHandler, isActive}: {songs: Array<PlaylistProps>, findSongHandler: ((a: string) => void), isActive:boolean}) => {
   const [isPlaying, setPlaying] = useState<boolean>(false);
 
   return (
     <>
       <section className="mt-8 mx-2 sm:mx-12">
-        {songsData.items.map((song: any) => {
+        {songs.map((song: any) => {
           const minutes = Math.floor(song.track.duration_ms / 1000 / 60);
           const seconds = song.track.duration_ms / 1000 - minutes * 60;
           return (
@@ -40,7 +41,7 @@ function PlaylistSongList({ songsData, findSongHandler, isActive}) {
                 </a>
                 <section className="flex text-cyan-50 px-1 my-auto items-start sm:text-md">
                   <div className=" line-clamp-1">
-                    {song.track.artists.map((artist) => {
+                    {song.track.artists.map((artist: Artist) => {
                       return (
                         <a
                           key={artist.id}

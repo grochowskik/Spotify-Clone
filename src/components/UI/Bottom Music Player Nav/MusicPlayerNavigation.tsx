@@ -7,25 +7,89 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState, useRef, useEffect } from 'react';
 
-function MusicPlayerNavigation({ activeSongData }) {
+type ExternalUrls = {
+  spotify: string;
+}
+
+type Artist = {
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  name: string;
+  type: string;
+  uri: string;
+}
+
+type Image = {
+  height: number;
+  url: string;
+  width: number;
+}
+
+type Album = {
+  album_group: string;
+  album_type: string;
+  artists: Artist[];
+  available_markets: string[];
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  images: Image[];
+  is_playable: boolean;
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  total_tracks: number;
+  type: string;
+  uri: string;
+}
+
+type ExternalIds = {
+  isrc: string;
+}
+
+interface Props {
+  album: Album;
+  artists: Artist[];
+  available_markets: string[];
+  disc_number: number;
+  duration_ms: number;
+  episode: boolean;
+  explicit: boolean;
+  external_ids: ExternalIds;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_local: boolean;
+  name: string;
+  popularity: number;
+  preview_url: string;
+  track: boolean;
+  track_number: number;
+  type: string;
+  uri: string;
+}
+
+const MusicPlayerNavigation = ({ activeSongData }: {activeSongData: Props | null}) => {
   const [isPlaying, setPlaying] = useState<boolean>(false);
-  const audioRef = useRef();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if(activeSongData) {
       setPlaying(true);
-      audioRef.current!.play();
+      if (audioRef.current) {audioRef.current.play();}
     }
-  }, [activeSongData?.id])
+  }, [])
 
   const playPauseHandler = () => {
     if (!isPlaying && activeSongData){
       setPlaying(true);
-      audioRef.current!.play();
+      if (audioRef.current) {audioRef.current.play()}
+      
     } 
     if (isPlaying && activeSongData) {
       setPlaying(false);
-      audioRef.current!.pause();
+      if (audioRef.current) {audioRef.current!.pause()}
     } 
   };
 

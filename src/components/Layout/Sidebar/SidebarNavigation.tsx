@@ -1,13 +1,14 @@
 import SearchResults from '../../UI/Search Results/SearchResults';
 import { useState, useRef } from 'react';
 
-function SidebarNavigation({ searchSongHandler }) {
+const SidebarNavigation = ({ searchSongHandler }: {searchSongHandler: ((a: string) => void) | null}) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const inputRef = useRef('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const refHandler = () => {
-    setSearchQuery(inputRef.current.value);
+    if (inputRef.current) {setSearchQuery(inputRef.current.value)};
   };
+
 
   return (
     <>

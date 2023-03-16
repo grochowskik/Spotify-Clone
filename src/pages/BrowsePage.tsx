@@ -24,16 +24,16 @@ function BrowsePage() {
     <>
       <Header />
       <div className="flex h-[calc(100%-10rem)] mb-24">
-        <SidebarNavigation />
+        <SidebarNavigation searchSongHandler={null}/>
 
         <div>
           <FeaturedPlaylists
-            featuredPlaylists={featuredPlaylistData.data.playlists}
+            items={featuredPlaylistData.data.playlists.items}
           />
-          <AlbumsGrid albumData={newReleasesData.data.albums} />
+          <AlbumsGrid items={newReleasesData.data.albums.items} />
         </div>
       </div>
-      <MusicPlayerNavigation />
+      <MusicPlayerNavigation activeSongData={null}/>
     </>
   );
 }

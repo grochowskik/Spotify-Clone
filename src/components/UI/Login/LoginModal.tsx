@@ -1,4 +1,4 @@
-function LoginModal() {
+const LoginModal = () => {
   return (
     <>
       <section className="fixed left-[calc(50%-16rem)] top-[calc(50%-15rem)] w-[32rem] h-[30rem] rounded-3xl bg-cyan-50 justify-between z-40">

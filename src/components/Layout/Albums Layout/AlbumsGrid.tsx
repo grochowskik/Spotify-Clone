@@ -1,13 +1,14 @@
-function AlbumsGrid({ albumData }) {
+import { Props } from "../../../react-query/fetch/Playlist/usePlaylistFetch";
+
+const AlbumsGrid = ({items}: {items: Array<Props>}) => {
+
   return (
     <>
       <section className="w-[100%-230px] text-cyan-200 font-['Proxima Nova'] sm:mx-12 2xl:mx-0 text-left xs:text-center">
-        {albumData.items[0].available_markets && (
           <p className="border-b-2 border-zinc-400 text-xl mx-4 px-2 text-left">
             Latest realeses
           </p>
-        )}
-        {albumData.items.map((album) => {
+        {items.map((album) => {
           return (
             <section
               key={album.id}

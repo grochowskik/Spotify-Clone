@@ -2,14 +2,15 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
+import { Props, Artist } from '../../../react-query/fetch/Artist/useArtistFetch';
 
-function MusicList({ songsData, findSongHandler, isActive }) {
+const MusicList = ({ songs, findSongHandler, isActive }: {songs: Array<Props>, findSongHandler: ((a: string) => void), isActive: boolean}) => {
 
-   const changeActiveSong = (event) => {
-    findSongHandler(event.currentTarget.id)
+   const changeActiveSong = (event: any) => {
+    const elementID = (event.currentTarget as HTMLElement).id
+    if (elementID) {findSongHandler(elementID)}
    }
-
-  const songs = songsData.tracks ?? songsData.items;
+   
   return (
     <>
       <section className="mt-8 mx-2 sm:mx-12">
@@ -47,7 +48,7 @@ function MusicList({ songsData, findSongHandler, isActive }) {
                 </a>
                 <section className="flex text-cyan-50 px-1 my-auto items-start text-left">
                   <div className="line-clamp-1 mx-1">
-                    {song.artists.map((artist) => {
+                    {song.artists.map((artist: Artist) => {
                       return (
                         <a
                           key={artist.id}

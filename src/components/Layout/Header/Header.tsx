@@ -1,7 +1,7 @@
 import LoginModal from '../../UI/Login/LoginModal';
 import { useState } from 'react';
 
-function Header() {
+const Header = () => {
   const [isModal, setModal] = useState<boolean>(false);
 
   const displayModalHandler = () => {

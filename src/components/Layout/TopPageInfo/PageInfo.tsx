@@ -1,32 +1,35 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Props } from '../../../react-query/fetch/Albums/useAlbumFetch';
 
-function PageInfo({ data }) {
+
+const PageInfo = ({ images,name,artists,tracks,followers }: Props) => {
+
   return (
     <>
       <section className="flex text-cyan-50 h-40 my-8 justify-between mx-0  sm:mx-16 sm:w-[100%-230px] ">
         <div className="flex ">
-          {data.images[0].url && (
+          {images && (
             <img
-              src={data.images[0].url}
+              src={images[0].url}
               className="rounded-full border-2 border-purple-900 hidden sm:block"
             />
           )}
           <div className="my-auto mx-4 sm:mx-6">
-            <span className="text-3xl font-semibold">{data.name}</span>
+            <span className="text-3xl font-semibold">{name}</span>
             <div className="flex mt-4">
-              {data.artists && (
-                <a href={'/artist/' + data.artists[0].id} className="mr-8">
-                  {data.artists[0].name}
+              {artists && (
+                <a href={'/artist/' + artists[0].id} className="mr-8">
+                  {artists[0].name}
                 </a>
               )}
-              {data.tracks && (
+              {tracks && (
                 <span className="mr-8">
-                  {data.tracks.total.toLocaleString('us')} songs
+                  {tracks.total.toLocaleString('us')} songs
                 </span>
               )}
-              {data.followers && (
+              {followers && (
                 <span>
-                  {data.followers.total.toLocaleString('us')} followers
+                  {followers.total.toLocaleString('us')} followers
                 </span>
               )}
             </div>

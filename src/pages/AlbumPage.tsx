@@ -21,12 +21,12 @@ function AlbumPage() {
     return <h1>Error</h1>;
   }
 
-  // const searchSongHandler = (ID) => {
-  //   setActiveSongData(albumData.data.tracks.items.find(({ id }) => id === ID));
-  // };
+  const searchSongHandler = (ID: string) => {
+    setActiveSongData(albumData.data.tracks.items.find(({ id }: {id: string}) => id === ID));
+  };
 
-  const findSongHandler = (ID) => {
-    setActiveSongData(albumData.data.tracks.items.find(({ id }) => id === ID));
+  const findSongHandler = (ID: string) => {
+    setActiveSongData(albumData.data.tracks.items.find(({ id }: {id: string}) => id === ID));
     if (isActive) {setIsActive(false)}
     if (!isActive) {setIsActive(true)}
   };
@@ -38,15 +38,15 @@ function AlbumPage() {
         <div className="flex h-[calc(100%-10rem)] mb-24">
           <SidebarNavigation searchSongHandler={searchSongHandler} />
           <div>
-            <PageInfo data={albumData.data} />
+            <PageInfo images={albumData.data.images} name={albumData.data.name} artists={albumData.data.artists} tracks={albumData.data.tracks} followers={null} />
             <MusicList
-              songsData={albumData.data.tracks}
+              songs={albumData.data.tracks.items}
               findSongHandler={findSongHandler}
               isActive={isActive}
             />
           </div>
         </div>
-        <MusicPlayerNavigation activeSongData={activeSongData} isActive={isActive}/>
+        <MusicPlayerNavigation activeSongData={activeSongData} />
       </div>
     </>
   );
