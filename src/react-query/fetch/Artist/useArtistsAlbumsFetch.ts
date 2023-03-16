@@ -36,24 +36,14 @@ export interface Item {
   uri: string;
 }
 
-export interface RootObject {
-  href: string;
-  items: Item[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
-}
-
-export const useArtistsAlbumsFetch = (artist_id: string, params?: Record<string, string>) => {
+export const useArtistsAlbumsFetch = (
+  artist_id: string,
+  params?: Record<string, string>
+) => {
   const { data, isLoading, isError, ...rest } = useQuery({
     queryKey: ['getArtistsAlbums'],
-    queryFn: () =>
-      getData(`/v1/artists/${artist_id}/albums`, params),
+    queryFn: () => getData(`/v1/artists/${artist_id}/albums`, params),
   });
 
   return { data, isLoading, isError, ...rest };
 };
-
-

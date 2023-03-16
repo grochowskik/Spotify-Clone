@@ -37,22 +37,13 @@ export interface Album {
   uri: string;
 }
 
-export interface Artist2 {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  name: string;
-  type: string;
-  uri: string;
-}
-
 export interface ExternalIds {
   isrc: string;
 }
 
 export interface Track {
   album: Album;
-  artists: Artist2[];
+  artists: Artist[];
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
@@ -68,10 +59,6 @@ export interface Track {
   track_number: number;
   type: string;
   uri: string;
-}
-
-export interface RootObject {
-  tracks: Track[];
 }
 
 export const useArtistTopSongsFetch = (artist_id: string) => {

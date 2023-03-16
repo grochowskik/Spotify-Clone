@@ -52,26 +52,21 @@ export interface Playlists {
   total: number;
 }
 
-export interface RootObject {
-  message: string;
-  playlists: Playlists;
-}
-
-export interface Props {
-    collaborative: boolean;
-    description: string;
-    external_urls: ExternalUrls;
-    href: string;
-    id: string;
-    images: Image[];
-    name: string;
-    owner: Owner;
-    primary_color?: any;
-    public?: any;
-    snapshot_id: string;
-    tracks: Tracks;
-    type: string;
-    uri: string;
+export interface FeaturedPlaylistsProps {
+  collaborative: boolean;
+  description: string;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  owner: Owner;
+  primary_color?: any;
+  public?: any;
+  snapshot_id: string;
+  tracks: Tracks;
+  type: string;
+  uri: string;
 }
 
 export const useFeaturedPlaylistFetch = (params?: Record<string, string>) => {

@@ -1,9 +1,14 @@
 import { BASE_API_URL, options } from '../../../services/ApiSlice';
 import { useEffect, useState } from 'react';
-import { Props } from '../../../react-query/fetch/Search/useSearchResultsFetch';
+import { SearchResultsProps } from '../../../react-query/fetch/Search/useSearchResultsFetch';
 
-const SearchResults = ({ searchQuery, searchSongHandler }: {searchQuery: string, searchSongHandler: ((a: string) => void)}) => {
-  const [data, setData] = useState<Props | null>(null);
+interface Props {
+  searchQuery: string;
+  searchSongHandler: (a: string) => void;
+}
+
+const SearchResults = ({ searchQuery, searchSongHandler }: Props) => {
+  const [data, setData] = useState<SearchResultsProps | null>(null);
 
   const path = '/v1/search';
   const params = {
@@ -21,7 +26,7 @@ const SearchResults = ({ searchQuery, searchSongHandler }: {searchQuery: string,
         .then((data) => setData(data));
     }
   }, [searchQuery]);
-  console.log(data)
+
   return (
     <>
       {data && (
@@ -107,6 +112,6 @@ const SearchResults = ({ searchQuery, searchSongHandler }: {searchQuery: string,
       )}
     </>
   );
-}
+};
 
 export default SearchResults;

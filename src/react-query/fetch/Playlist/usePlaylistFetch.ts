@@ -116,16 +116,7 @@ export interface Tracks {
   total: number;
 }
 
-export interface Artist {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  name: string;
-  type: string;
-  uri: string;
-}
-
-export interface Props {
+export interface AlbumGridProps {
   album_group: string;
   album_type: string;
   artists: Artist[];

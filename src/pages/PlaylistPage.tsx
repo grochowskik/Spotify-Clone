@@ -3,10 +3,12 @@ import MusicPlayerNavigation from '../components/UI/Bottom Music Player Nav/Musi
 import PlaylistSongList from '../components/Layout/Music List/PlaylistSongList';
 import SidebarNavigation from '../components/Layout/Sidebar/SidebarNavigation';
 import PageInfo from '../components/Layout/TopPageInfo/PageInfo';
-import { usePlaylistsFetch, Item } from '../react-query/fetch/Playlist/usePlaylistFetch';
+import {
+  usePlaylistsFetch,
+  Item,
+} from '../react-query/fetch/Playlist/usePlaylistFetch';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-
 
 function PlaylistPage() {
   const [isActive, setIsActive] = useState(false);
@@ -22,21 +24,38 @@ function PlaylistPage() {
     return <h1>Error</h1>;
   }
 
+  const searchSongHandler = (ID: string) => {
+    setActiveSongData(
+      playlistData.data.tracks.items.find(({ id }: { id: string }) => id === ID)
+    );
+  };
+
   const findSongHandler = (ID: string) => {
     setActiveSongData(
-      playlistData.data.tracks.items.find((song: Item) => song.track.id === ID).track
+      playlistData.data.tracks.items.find((song: Item) => song.track.id === ID)
+        .track
     );
-    if (isActive) {setIsActive(false)}
-    if (!isActive) {setIsActive(true)}
+    if (isActive) {
+      setIsActive(false);
+    }
+    if (!isActive) {
+      setIsActive(true);
+    }
   };
-  console.log(playlistData.data.tracks.items)
+
   return (
     <>
       <Header />
       <div className="flex h-[calc(100%-10rem)] mb-24">
-        <SidebarNavigation searchSongHandler={null}/>
+        <SidebarNavigation searchSongHandler={searchSongHandler} />
         <div>
-          <PageInfo images={playlistData.data.images} name={playlistData.data.name} artists={null} tracks={playlistData.data.tracks} followers={playlistData.data.followers} />
+          <PageInfo
+            images={playlistData.data.images}
+            name={playlistData.data.name}
+            artists={null}
+            tracks={playlistData.data.tracks}
+            followers={playlistData.data.followers}
+          />
           <PlaylistSongList
             songs={playlistData.data.tracks.items}
             findSongHandler={findSongHandler}

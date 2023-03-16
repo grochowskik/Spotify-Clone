@@ -1,12 +1,29 @@
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
-import { PlaylistProps, Artist } from '../../../react-query/fetch/Playlist/usePlaylistFetch';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../../store/index';
+import {
+  PlaylistProps,
+  Artist,
+} from '../../../react-query/fetch/Playlist/usePlaylistFetch';
 
-const PlaylistSongList = ({ songs, findSongHandler, isActive}: {songs: Array<PlaylistProps>, findSongHandler: ((a: string) => void), isActive:boolean}) => {
-  const [isPlaying, setPlaying] = useState<boolean>(false);
+interface Props {
+  songs: Array<PlaylistProps>;
+  findSongHandler: (a: string) => void;
+  isActive: boolean;
+}
 
+const PlaylistSongList = ({ songs, findSongHandler, isActive }: Props) => {
+  const playPause = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const playPauseHandler = (event) => {
+    dispatch(actions.playPause());
+    // (event) => findSongHandler(event.currentTarget.id);
+  };
+
+  console.log(playPause.isPlaying);
   return (
     <>
       <section className="mt-8 mx-2 sm:mx-12">
@@ -22,16 +39,16 @@ const PlaylistSongList = ({ songs, findSongHandler, isActive}: {songs: Array<Pla
                 <a
                   id={song.track.id}
                   className="mx-2 sm:mx-6 my-auto"
-                  onClick={(event) => findSongHandler(event.currentTarget.id)}
+                  onClick={playPauseHandler}
                 >
-                  {!isActive && (
+                  {!playPause.isPlaying && (
                     <PlayArrowIcon
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
                     />
                   )}
-                  {isActive && (
+                  {playPause.isPlaying && (
                     <PauseIcon
                       fontSize="large"
                       color="inherit"
@@ -54,7 +71,7 @@ const PlaylistSongList = ({ songs, findSongHandler, isActive}: {songs: Array<Pla
                     })}
                   </div>
                   <a>-</a>
-                  <p className="mx-1 sm:mx-2">{song.track.name}</p>
+                  <p className="mx-1 sm:mx-2 line-clamp-1">{song.track.name}</p>
                 </section>
               </div>
               <div className="my-auto mx-6 hidden sm:flex">
@@ -75,6 +92,6 @@ const PlaylistSongList = ({ songs, findSongHandler, isActive}: {songs: Array<Pla
       </section>
     </>
   );
-}
+};
 
 export default PlaylistSongList;

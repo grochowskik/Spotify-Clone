@@ -1,13 +1,11 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Props } from '../../../react-query/fetch/Albums/useAlbumFetch';
 
-
-const PageInfo = ({ images,name,artists,tracks,followers }: Props) => {
-
+const PageInfo = ({ images, name, artists, tracks, followers }: Props) => {
   return (
     <>
       <section className="flex text-cyan-50 h-40 my-8 justify-between mx-0  sm:mx-16 sm:w-[100%-230px] ">
-        <div className="flex ">
+        <div className="inline-flex">
           {images && (
             <img
               src={images[0].url}
@@ -28,9 +26,7 @@ const PageInfo = ({ images,name,artists,tracks,followers }: Props) => {
                 </span>
               )}
               {followers && (
-                <span>
-                  {followers.total.toLocaleString('us')} followers
-                </span>
+                <span>{followers.total.toLocaleString('us')} followers</span>
               )}
             </div>
           </div>
@@ -41,5 +37,5 @@ const PageInfo = ({ images,name,artists,tracks,followers }: Props) => {
       </section>
     </>
   );
-}
+};
 export default PageInfo;

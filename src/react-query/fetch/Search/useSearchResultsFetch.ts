@@ -52,7 +52,6 @@ export interface Followers {
   total: number;
 }
 
-
 export interface Item2 {
   external_urls: ExternalUrls;
   followers: Followers;
@@ -76,7 +75,6 @@ export interface Artists {
   total: number;
 }
 
-
 export interface Artist2 {
   external_urls: ExternalUrls;
   href: string;
@@ -85,7 +83,6 @@ export interface Artist2 {
   type: string;
   uri: string;
 }
-
 
 export interface Album {
   album_group: string;
@@ -147,7 +144,7 @@ export interface Tracks {
   total: number;
 }
 
-export interface Props {
+export interface SearchResultsProps {
   albums: Albums;
   artists: Artists;
   tracks: Tracks;

@@ -48,10 +48,6 @@ export interface Albums {
   total: number;
 }
 
-export interface RootObject {
-  albums: Albums;
-}
-
 export const useNewRealesesFetch = (params?: Record<string, string>) => {
   const { data, isLoading, isError, ...rest } = useQuery({
     queryKey: ['getNewRealeses'],

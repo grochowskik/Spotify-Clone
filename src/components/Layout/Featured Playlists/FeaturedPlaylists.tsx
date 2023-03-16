@@ -1,14 +1,17 @@
-import { Props } from "../../../react-query/fetch/Browse/useFeaturedPlaylistFetch";
+import { FeaturedPlaylistsProps } from '../../../react-query/fetch/Browse/useFeaturedPlaylistFetch';
 
-const FeaturedPlaylists = ({ items }: {items: Array<Props>}) => {
+interface Props {
+  items: Array<FeaturedPlaylistsProps>;
+}
 
+const FeaturedPlaylists = ({ items }: Props) => {
   return (
     <>
       <section className="w-[100%-230px] text-cyan-200 mt-12 font-['Proxima Nova'] mx-auto sm:mx-12 2xl:mx-0 text-left xs:text-center">
         <p className="border-b-2 border-cyan-400 text-xl mx-4 px-2 text-left">
           Your favourite songs
         </p>
-        {items.map((playlist: Props) => {
+        {items.map((playlist: FeaturedPlaylistsProps) => {
           return (
             <a
               href={'/playlist/' + playlist.id}
@@ -37,5 +40,5 @@ const FeaturedPlaylists = ({ items }: {items: Array<Props>}) => {
       </div>
     </>
   );
-}
+};
 export default FeaturedPlaylists;

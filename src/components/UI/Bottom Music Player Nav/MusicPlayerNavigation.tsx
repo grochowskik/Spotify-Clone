@@ -5,93 +5,34 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState, useRef, useEffect } from 'react';
-
-type ExternalUrls = {
-  spotify: string;
-}
-
-type Artist = {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  name: string;
-  type: string;
-  uri: string;
-}
-
-type Image = {
-  height: number;
-  url: string;
-  width: number;
-}
-
-type Album = {
-  album_group: string;
-  album_type: string;
-  artists: Artist[];
-  available_markets: string[];
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  images: Image[];
-  is_playable: boolean;
-  name: string;
-  release_date: string;
-  release_date_precision: string;
-  total_tracks: number;
-  type: string;
-  uri: string;
-}
-
-type ExternalIds = {
-  isrc: string;
-}
+import { useRef } from 'react';
+import { MusicPlayerProps } from '../../../react-query/fetch/Albums/useAlbumFetch';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../../store/index';
 
 interface Props {
-  album: Album;
-  artists: Artist[];
-  available_markets: string[];
-  disc_number: number;
-  duration_ms: number;
-  episode: boolean;
-  explicit: boolean;
-  external_ids: ExternalIds;
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  is_local: boolean;
-  name: string;
-  popularity: number;
-  preview_url: string;
-  track: boolean;
-  track_number: number;
-  type: string;
-  uri: string;
+  activeSongData: MusicPlayerProps | null;
 }
 
-const MusicPlayerNavigation = ({ activeSongData }: {activeSongData: Props | null}) => {
-  const [isPlaying, setPlaying] = useState<boolean>(false);
+const MusicPlayerNavigation = ({ activeSongData }: Props) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    if(activeSongData) {
-      setPlaying(true);
-      if (audioRef.current) {audioRef.current.play();}
-    }
-  }, [])
+  const playPause = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const playPauseHandler = () => {
-    if (!isPlaying && activeSongData){
-      setPlaying(true);
-      if (audioRef.current) {audioRef.current.play()}
-      
-    } 
-    if (isPlaying && activeSongData) {
-      setPlaying(false);
-      if (audioRef.current) {audioRef.current!.pause()}
-    } 
+    dispatch(actions.playPause());
+    // (event) => findSongHandler(event.currentTarget.id);
   };
+
+  // const playPauseHandler = () => {
+  //     if (audioRef.current) {
+  //       audioRef.current.play();
+  //   }
+  //     if (audioRef.current) {
+  //       audioRef.current!.pause();
+  //   }
+  // };
 
   return (
     <div className=" bg-transparent backdrop-blur-xl backdrop-brightness-125 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
@@ -135,14 +76,14 @@ const MusicPlayerNavigation = ({ activeSongData }: {activeSongData: Props | null
           />
         </a>
         <a className="my-auto" onClick={playPauseHandler}>
-          {isPlaying && (
+          {playPause.isPlaying && (
             <PauseIcon
               fontSize="large"
               color="secondary"
               className="hover:text-neutral-300 cursor-pointer"
             />
           )}
-          {!isPlaying && (
+          {!playPause.isPlaying && (
             <PlayArrowIcon
               fontSize="large"
               color="secondary"
@@ -165,7 +106,7 @@ const MusicPlayerNavigation = ({ activeSongData }: {activeSongData: Props | null
           />
         </a>
       </div>
-      <div className="my-auto text-end px-10 ">
+      <div className="my-auto text-end px-10 hidden lg:block">
         <input
           type="range"
           name="volume"
@@ -177,6 +118,6 @@ const MusicPlayerNavigation = ({ activeSongData }: {activeSongData: Props | null
       </div>
     </div>
   );
-}
+};
 
 export default MusicPlayerNavigation;

@@ -31,18 +31,6 @@ export interface Item {
   uri: string;
 }
 
-export interface RootObject {
-  href: string;
-  items: Item[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
-}
-
-
-
 export const useAlbumsTracksFetch = (albums_id: string) => {
   const { data, isLoading, isError, ...rest } = useQuery({
     queryKey: ['getAlbumsTracks'],

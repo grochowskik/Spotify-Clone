@@ -1,13 +1,16 @@
-import { Props } from "../../../react-query/fetch/Playlist/usePlaylistFetch";
+import { AlbumGridProps } from '../../../react-query/fetch/Playlist/usePlaylistFetch';
 
-const AlbumsGrid = ({items}: {items: Array<Props>}) => {
+interface Props {
+  items: Array<AlbumGridProps>;
+}
 
+const AlbumsGrid = ({ items }: Props) => {
   return (
     <>
       <section className="w-[100%-230px] text-cyan-200 font-['Proxima Nova'] sm:mx-12 2xl:mx-0 text-left xs:text-center">
-          <p className="border-b-2 border-zinc-400 text-xl mx-4 px-2 text-left">
-            Latest realeses
-          </p>
+        <p className="border-b-2 border-zinc-400 text-xl mx-4 px-2 text-left">
+          Latest realeses
+        </p>
         {items.map((album) => {
           return (
             <section
@@ -49,5 +52,5 @@ const AlbumsGrid = ({items}: {items: Array<Props>}) => {
       </div>
     </>
   );
-}
+};
 export default AlbumsGrid;

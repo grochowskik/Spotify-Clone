@@ -88,10 +88,6 @@ export interface Album {
   uri: string;
 }
 
-export interface RootObject {
-  albums: Album[];
-}
-
 export interface Followers {
   href?: any;
   total: number;
@@ -103,6 +99,28 @@ export interface Props {
   name: string;
   tracks: Tracks | null;
   followers: Followers | null;
+}
+
+export interface MusicPlayerProps {
+  album: Album;
+  artists: Artist[];
+  available_markets: string[];
+  disc_number: number;
+  duration_ms: number;
+  episode: boolean;
+  explicit: boolean;
+  external_ids: ExternalIds;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_local: boolean;
+  name: string;
+  popularity: number;
+  preview_url: string;
+  track: boolean;
+  track_number: number;
+  type: string;
+  uri: string;
 }
 
 export const useAlbumFetch = (albums_id: string) => {

@@ -1,16 +1,34 @@
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
-import { Props, Artist } from '../../../react-query/fetch/Artist/useArtistFetch';
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../../store/index';
+import {
+  SongsProps,
+  Artist,
+} from '../../../react-query/fetch/Artist/useArtistFetch';
 
-const MusicList = ({ songs, findSongHandler, isActive }: {songs: Array<Props>, findSongHandler: ((a: string) => void), isActive: boolean}) => {
+interface Props {
+  songs: Array<SongsProps>;
+  findSongHandler: (a: string) => void;
+  isActive: boolean;
+}
 
-   const changeActiveSong = (event: any) => {
-    const elementID = (event.currentTarget as HTMLElement).id
-    if (elementID) {findSongHandler(elementID)}
-   }
-   
+const MusicList = ({ songs, findSongHandler, isActive }: Props) => {
+  const playPause = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const changeActiveSong = (event: any) => {
+    const elementID = (event.currentTarget as HTMLElement).id;
+    if (elementID) {
+      findSongHandler(elementID);
+    }
+  };
+
+  const playPauseHandler = () => {
+    dispatch(actions.playPause());
+  };
+
+  console.log(playPause.isPlaying);
   return (
     <>
       <section className="mt-8 mx-2 sm:mx-12">
@@ -27,19 +45,17 @@ const MusicList = ({ songs, findSongHandler, isActive }: {songs: Array<Props>, f
                 <a
                   id={song.id}
                   className="mx-2 sm:mx-6 my-auto"
-                  onClick={changeActiveSong}
+                  onClick={playPauseHandler}
                 >
-                  {!isActive && (
+                  {!playPause.isPlaying && (
                     <PlayArrowIcon
-
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
                     />
                   )}
-                  {isActive && (
+                  {playPause.isPlaying && (
                     <PauseIcon
-
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
@@ -54,15 +70,14 @@ const MusicList = ({ songs, findSongHandler, isActive }: {songs: Array<Props>, f
                           key={artist.id}
                           href={'/artist/' + artist.id}
                           className="mx-1 "
-                          >
+                        >
                           {artist.name}
                         </a>
-
                       );
                     })}
                   </div>
                   <a>-</a>
-                  <p className="mx-1 sm:mx-2">{song.name}</p>
+                  <p className="mx-1 sm:mx-2 line-clamp-1">{song.name}</p>
                 </section>
               </div>
               <div className="my-auto mx-6 hidden sm:flex">
@@ -83,6 +98,6 @@ const MusicList = ({ songs, findSongHandler, isActive }: {songs: Array<Props>, f
       </section>
     </>
   );
-}
+};
 
 export default MusicList;

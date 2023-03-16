@@ -21,11 +21,24 @@ function ArtistPage() {
     offset: '0',
   });
 
+  const searchSongHandler = (ID: string) => {
+    setActiveSongData(
+      artistTopSongsData.data.tracks.items.find(
+        ({ id }: { id: string }) => id === ID
+      )
+    );
+  };
 
   const findSongHandler = (ID: string) => {
-    setActiveSongData(artistTopSongsData.data.tracks.find(({ id }: {id: string}) => id === ID));
-    if (isActive) {setIsActive(false)}
-    if (!isActive) {setIsActive(true)}
+    setActiveSongData(
+      artistTopSongsData.data.tracks.find(({ id }: { id: string }) => id === ID)
+    );
+    if (isActive) {
+      setIsActive(false);
+    }
+    if (!isActive) {
+      setIsActive(true);
+    }
   };
 
   const artistData = useArtistFetch(params.id!);
@@ -48,9 +61,15 @@ function ArtistPage() {
     <>
       <Header />
       <div className="flex h-[calc(100%-10rem)] mb-24">
-        <SidebarNavigation searchSongHandler={null}/>
+        <SidebarNavigation searchSongHandler={searchSongHandler} />
         <div>
-          <PageInfo images={artistData.data.images} name={artistData.data.name} artists={artistData.data.artists} tracks={null} followers={artistData.data.followers}/>
+          <PageInfo
+            images={artistData.data.images}
+            name={artistData.data.name}
+            artists={artistData.data.artists}
+            tracks={null}
+            followers={artistData.data.followers}
+          />
           <AlbumsGrid items={artistAlbumsData.data.items} />
           <MusicList
             songs={artistTopSongsData.data.tracks}

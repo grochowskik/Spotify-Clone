@@ -35,6 +35,6 @@ const LoginModal = () => {
       </section>
     </>
   );
-}
+};
 
 export default LoginModal;

@@ -1,14 +1,19 @@
 import SearchResults from '../../UI/Search Results/SearchResults';
 import { useState, useRef } from 'react';
 
-const SidebarNavigation = ({ searchSongHandler }: {searchSongHandler: ((a: string) => void) | null}) => {
+interface Props {
+  searchSongHandler: (a: string) => void;
+}
+
+const SidebarNavigation = ({ searchSongHandler }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const refHandler = () => {
-    if (inputRef.current) {setSearchQuery(inputRef.current.value)};
+    if (inputRef.current) {
+      setSearchQuery(inputRef.current.value);
+    }
   };
-
 
   return (
     <>
@@ -40,7 +45,7 @@ const SidebarNavigation = ({ searchSongHandler }: {searchSongHandler: ((a: strin
         </div>
         <section className="grid">
           <a
-            href="/artist"
+            href="/playlist/6YhSiBiAFSlxcoW3Ro16pD"
             className=" text-cyan-50 border-b-[1px] border-zinc-700 h-10 leading-10 hover:backdrop-brightness-[1.4] px-1"
           >
             Ooh Eeh Ooh Ah Aah
@@ -49,6 +54,6 @@ const SidebarNavigation = ({ searchSongHandler }: {searchSongHandler: ((a: strin
       </div>
     </>
   );
-}
+};
 
 export default SidebarNavigation;

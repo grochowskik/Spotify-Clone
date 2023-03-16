@@ -11,11 +11,11 @@ const Header = () => {
   return (
     <>
       {isModal && <LoginModal />}
-      <header className="sticky top-0 w-screen h-20 text-cyan-50 text-xl bg-neutral-900 items-center flex justify-between z-10 ">
+      <header className="sticky top-0 w-screen h-20 text-cyan-50 text-xl bg-neutral-900 items-center flex justify-between z-10">
         <a href="/" className="ml-10 font-mono text-4xl cursor-pointer">
           DUGLERIFY
         </a>
-        <span className="mr-20">
+        <span className="mr-20 hidden md:block">
           <a
             href="/browse"
             className="mr-4 px-4 py-1 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer"
@@ -32,6 +32,6 @@ const Header = () => {
       </header>
     </>
   );
-}
+};
 
 export default Header;
