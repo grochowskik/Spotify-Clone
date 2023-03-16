@@ -5,26 +5,38 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-function MusicPlayerNavigation({ songData }) {
+function MusicPlayerNavigation({ activeSongData }) {
   const [isPlaying, setPlaying] = useState<boolean>(false);
   const audioRef = useRef();
 
+  useEffect(() => {
+    if(activeSongData) {
+      setPlaying(true);
+      audioRef.current!.play();
+    }
+  }, [activeSongData?.id])
+
   const playPauseHandler = () => {
-    setPlaying((prevState) => !prevState);
-    if (!isPlaying && songData) audioRef.current!.play();
-    if (isPlaying && songData) audioRef.current!.pause();
+    if (!isPlaying && activeSongData){
+      setPlaying(true);
+      audioRef.current!.play();
+    } 
+    if (isPlaying && activeSongData) {
+      setPlaying(false);
+      audioRef.current!.pause();
+    } 
   };
 
   return (
     <div className=" bg-transparent backdrop-blur-xl backdrop-brightness-125 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
-      <audio ref={audioRef} src={songData?.preview_url} preload="none" />
+      <audio ref={audioRef} src={activeSongData?.preview_url} preload="none" />
       <div className="flex text-cyan-50 px-10 my-auto">
-        {songData && (
+        {activeSongData && (
           <>
             <p className="mr-2 line-clamp-1 overflow-hidden">
-              {songData.artists.map((artist) => {
+              {activeSongData.artists.map((artist) => {
                 return (
                   <a key={artist.id} href={'/artist/' + artist.id}>
                     {artist.name + ' '}
@@ -33,7 +45,7 @@ function MusicPlayerNavigation({ songData }) {
               })}
             </p>
             <p>-</p>
-            <p className="ml-2 line-clamp-1">{songData.name}</p>
+            <p className="ml-2 line-clamp-1">{activeSongData.name}</p>
 
             <FavoriteIcon
               color="secondary"

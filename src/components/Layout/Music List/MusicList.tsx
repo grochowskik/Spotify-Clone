@@ -3,8 +3,11 @@ import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 
-function MusicList({ songsData, findSongHandler }) {
-  const [isPlaying, setPlaying] = useState();
+function MusicList({ songsData, findSongHandler, isActive }) {
+
+   const changeActiveSong = (event) => {
+    findSongHandler(event.currentTarget.id)
+   }
 
   const songs = songsData.tracks ?? songsData.items;
   return (
@@ -15,6 +18,7 @@ function MusicList({ songsData, findSongHandler }) {
           const seconds = song.duration_ms / 1000 - minutes * 60;
           return (
             <div
+              id={song.id}
               key={song.id}
               className="inline-flex justify-between border-t-2 border-zinc-700 hover:backdrop-brightness-[1.4] py-4 rounded w-full sm:w-[100%-230px]"
             >
@@ -22,34 +26,37 @@ function MusicList({ songsData, findSongHandler }) {
                 <a
                   id={song.id}
                   className="mx-2 sm:mx-6 my-auto"
-                  onClick={(event) => findSongHandler(event.currentTarget.id)}
+                  onClick={changeActiveSong}
                 >
-                  {!isPlaying && (
+                  {!isActive && (
                     <PlayArrowIcon
+
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
                     />
                   )}
-                  {isPlaying && (
+                  {isActive && (
                     <PauseIcon
+
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
                     />
                   )}
                 </a>
-                <section className="inline-flex text-cyan-50 px-1 my-auto items-start">
-                  <div className="overflow-hidden  line-clamp-1">
+                <section className="flex text-cyan-50 px-1 my-auto items-start text-left">
+                  <div className="line-clamp-1 mx-1">
                     {song.artists.map((artist) => {
                       return (
                         <a
                           key={artist.id}
                           href={'/artist/' + artist.id}
-                          className="mx-1"
-                        >
+                          className="mx-1 "
+                          >
                           {artist.name}
                         </a>
+
                       );
                     })}
                   </div>

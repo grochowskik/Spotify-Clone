@@ -8,8 +8,9 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 function AlbumPage() {
-  const [songData, setSongData] = useState(null);
-  const [searchData, setSearchData] = useState(null);
+  const [isActive, setIsActive] = useState(false);
+  const [activeSongData, setActiveSongData] = useState(null);
+
   const params = useParams();
   const albumData = useAlbumFetch(params.id!);
 
@@ -20,14 +21,14 @@ function AlbumPage() {
     return <h1>Error</h1>;
   }
 
-  const searchSongHandler = (ID) => {
-    setSearchData(null);
-    setSearchData(albumData.data.tracks.items.find(({ id }) => id === ID));
-  };
+  // const searchSongHandler = (ID) => {
+  //   setActiveSongData(albumData.data.tracks.items.find(({ id }) => id === ID));
+  // };
 
   const findSongHandler = (ID) => {
-    setSongData(null);
-    setSongData(albumData.data.tracks.items.find(({ id }) => id === ID));
+    setActiveSongData(albumData.data.tracks.items.find(({ id }) => id === ID));
+    if (isActive) {setIsActive(false)}
+    if (!isActive) {setIsActive(true)}
   };
 
   return (
@@ -41,10 +42,11 @@ function AlbumPage() {
             <MusicList
               songsData={albumData.data.tracks}
               findSongHandler={findSongHandler}
+              isActive={isActive}
             />
           </div>
         </div>
-        <MusicPlayerNavigation songData={songData} />
+        <MusicPlayerNavigation activeSongData={activeSongData} isActive={isActive}/>
       </div>
     </>
   );

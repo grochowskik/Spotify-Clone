@@ -11,7 +11,8 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 function ArtistPage() {
-  const [songData, setSongData] = useState(null);
+  const [activeSongData, setActiveSongData] = useState(null);
+  const [isActive, setIsActive] = useState(false);
   const params = useParams();
 
   const artistTopSongsData = useArtistTopSongsFetch(params.id!);
@@ -20,9 +21,11 @@ function ArtistPage() {
     offset: '0',
   });
 
+
   const findSongHandler = (ID) => {
-    setSongData(null);
-    setSongData(artistTopSongsData.data.tracks.find(({ id }) => id === ID));
+    setActiveSongData(artistTopSongsData.data.tracks.find(({ id }) => id === ID));
+    if (isActive) {setIsActive(false)}
+    if (!isActive) {setIsActive(true)}
   };
 
   const artistData = useArtistFetch(params.id!);
@@ -53,10 +56,11 @@ function ArtistPage() {
           <MusicList
             songsData={artistTopSongsData.data}
             findSongHandler={findSongHandler}
+            isActive={isActive}
           />
         </div>
       </div>
-      <MusicPlayerNavigation songData={songData} />
+      <MusicPlayerNavigation activeSongData={activeSongData} isActive={isActive} />
     </>
   );
 }

@@ -3,7 +3,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 
-function PlaylistSongList({ songsData, findSongHandler }) {
+function PlaylistSongList({ songsData, findSongHandler, isActive}) {
   const [isPlaying, setPlaying] = useState<boolean>(false);
 
   return (
@@ -23,14 +23,14 @@ function PlaylistSongList({ songsData, findSongHandler }) {
                   className="mx-2 sm:mx-6 my-auto"
                   onClick={(event) => findSongHandler(event.currentTarget.id)}
                 >
-                  {!isPlaying && (
+                  {!isActive && (
                     <PlayArrowIcon
                       fontSize="large"
                       color="inherit"
                       className="hover:text-purple-600 text-neutral-100 cursor-pointer"
                     />
                   )}
-                  {isPlaying && (
+                  {isActive && (
                     <PauseIcon
                       fontSize="large"
                       color="inherit"

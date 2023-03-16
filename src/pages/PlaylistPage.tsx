@@ -8,7 +8,8 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 function PlaylistPage() {
-  const [songData, setSongData] = useState(null);
+  const [isActive, setIsActive] = useState(false);
+  const [activeSongData, setActiveSongData] = useState(null);
   const params = useParams();
 
   const playlistData = usePlaylistsFetch(params.id!);
@@ -21,10 +22,11 @@ function PlaylistPage() {
   }
 
   const findSongHandler = (ID) => {
-    setSongData(null);
-    setSongData(
+    setActiveSongData(
       playlistData.data.tracks.items.find((song) => song.track.id === ID).track
     );
+    if (isActive) {setIsActive(false)}
+    if (!isActive) {setIsActive(true)}
   };
 
   return (
@@ -37,10 +39,11 @@ function PlaylistPage() {
           <PlaylistSongList
             songsData={playlistData.data.tracks}
             findSongHandler={findSongHandler}
+            isActive={isActive}
           />
         </div>
       </div>
-      <MusicPlayerNavigation songData={songData} />
+      <MusicPlayerNavigation activeSongData={activeSongData} isActive={isActive} />
     </>
   );
 }

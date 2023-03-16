@@ -1,4 +1,4 @@
-import LoginModal from '../../UI/Login and Singin/LoginModal';
+import LoginModal from '../../UI/Login/LoginModal';
 import { useState } from 'react';
 
 function Header() {
