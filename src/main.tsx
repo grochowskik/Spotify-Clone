@@ -4,7 +4,7 @@ import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './index.css';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store/store';
 
 const queryClient = new QueryClient();
 

@@ -5,11 +5,8 @@ import FeaturedPlaylists from '../components/Layout/Featured Playlists/FeaturedP
 import SidebarNavigation from '../components/Layout/Sidebar/SidebarNavigation';
 import { useFeaturedPlaylistFetch } from '../react-query/fetch/Browse/useFeaturedPlaylistFetch';
 import { useNewRealesesFetch } from '../react-query/fetch/Browse/useNewRealesesFetch';
-import { useState } from 'react';
 
 function BrowsePage() {
-  const [activeSongData, setActiveSongData] = useState(null);
-
   const featuredPlaylistData = useFeaturedPlaylistFetch({
     limit: '4',
     offset: '0',
@@ -23,19 +20,11 @@ function BrowsePage() {
     return <h1>Error</h1>;
   }
 
-  const searchSongHandler = (ID: string) => {
-    setActiveSongData(
-      featuredPlaylistData.data.tracks.items.find(
-        ({ id }: { id: string }) => id === ID
-      )
-    );
-  };
-
   return (
     <>
       <Header />
       <div className="flex h-[calc(100%-10rem)] mb-24">
-        <SidebarNavigation searchSongHandler={searchSongHandler} />
+        <SidebarNavigation />
 
         <div>
           <FeaturedPlaylists
@@ -44,7 +33,7 @@ function BrowsePage() {
           <AlbumsGrid items={newReleasesData.data.albums.items} />
         </div>
       </div>
-      <MusicPlayerNavigation activeSongData={null} />
+      <MusicPlayerNavigation/>
     </>
   );
 }

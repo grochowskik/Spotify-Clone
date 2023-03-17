@@ -4,10 +4,9 @@ import { SearchResultsProps } from '../../../react-query/fetch/Search/useSearchR
 
 interface Props {
   searchQuery: string;
-  searchSongHandler: (a: string) => void;
 }
 
-const SearchResults = ({ searchQuery, searchSongHandler }: Props) => {
+const SearchResults = ({ searchQuery }: Props) => {
   const [data, setData] = useState<SearchResultsProps | null>(null);
 
   const path = '/v1/search';
@@ -32,13 +31,12 @@ const SearchResults = ({ searchQuery, searchSongHandler }: Props) => {
       {data && (
         <section className="bg-cyan-50 rounded-b-lg text-cyan-900 absolute w-[230px] z-30 text-sm">
           <div className="text-zinc-500 font-['Proxima Nova'] border-b-[1px] border-zinc-700"></div>
-          {data.tracks.items?.map((category) => {
+          {data.tracks?.items.map((category) => {
             return (
               <section
                 id={category.id}
                 key={category.id}
                 className="px-1 m-1"
-                onClick={(event) => searchSongHandler(event.currentTarget.id)}
               >
                 <div className="font-semibold truncate ">{category.name}</div>
                 <div className="truncate text-xs">
@@ -54,7 +52,7 @@ const SearchResults = ({ searchQuery, searchSongHandler }: Props) => {
             );
           })}
           <div className="text-zinc-500 font-['Proxima Nova'] border-b-[1px] border-zinc-700"></div>
-          {data.artists.items?.map((category) => {
+          {data.artists?.items.map((category) => {
             return (
               <a
                 href={'/artist/' + category.id}
@@ -74,9 +72,9 @@ const SearchResults = ({ searchQuery, searchSongHandler }: Props) => {
             );
           })}
           <div className="text-zinc-500 font-['Proxima Nova'] border-b-[1px] border-zinc-700 "></div>
-          {data.albums.items?.map((category) => {
+          {data.albums?.items.map((category) => {
             return (
-              <div className="grid grid-flow-col justify-start p-2">
+              <div key={category.id} className="grid grid-flow-col justify-start p-2">
                 <a href={'/album/' + category.id} className="font-semibold">
                   {category.images[0] && (
                     <img

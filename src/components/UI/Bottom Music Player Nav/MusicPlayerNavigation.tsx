@@ -5,43 +5,35 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useRef } from 'react';
-import { MusicPlayerProps } from '../../../react-query/fetch/Albums/useAlbumFetch';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions } from '../../../store/index';
+import { actions } from '../../../store/store';
+import {useRef} from 'react'
+import { Artist } from '../../../react-query/fetch/Artist/useArtistFetch';
 
-interface Props {
-  activeSongData: MusicPlayerProps | null;
-}
-
-const MusicPlayerNavigation = ({ activeSongData }: Props) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const playPause = useSelector((state) => state);
+const MusicPlayerNavigation = () => {
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const playPause = useSelector((state: IRootState) => state);
   const dispatch = useDispatch();
 
-  const playPauseHandler = () => {
-    dispatch(actions.playPause());
-    // (event) => findSongHandler(event.currentTarget.id);
-  };
+  const playAudioHandler = () => {
+    dispatch(actions.playPauseAudio(null))
 
-  // const playPauseHandler = () => {
-  //     if (audioRef.current) {
-  //       audioRef.current.play();
-  //   }
-  //     if (audioRef.current) {
-  //       audioRef.current!.pause();
-  //   }
-  // };
+    if (playPause.isPlaying) {
+      audioRef.current!.pause()
+    }
+    if (!playPause.isPlaying) {
+      audioRef.current!.play() 
+    }
+  };
 
   return (
     <div className=" bg-transparent backdrop-blur-xl backdrop-brightness-125 fixed bottom-0 h-20 grid grid-cols-3 w-screen">
-      <audio ref={audioRef} src={activeSongData?.preview_url} preload="none" />
+      <audio ref={audioRef} src={playPause.audio}></audio>
       <div className="flex text-cyan-50 px-10 my-auto">
-        {activeSongData && (
+        {playPause.activeSong && (
           <>
             <p className="mr-2 line-clamp-1 overflow-hidden">
-              {activeSongData.artists.map((artist) => {
+              {playPause.activeSong.artists.map((artist: Artist) => {
                 return (
                   <a key={artist.id} href={'/artist/' + artist.id}>
                     {artist.name + ' '}
@@ -50,7 +42,7 @@ const MusicPlayerNavigation = ({ activeSongData }: Props) => {
               })}
             </p>
             <p>-</p>
-            <p className="ml-2 line-clamp-1">{activeSongData.name}</p>
+            <p className="ml-2 line-clamp-1">{playPause.activeSong.name}</p>
 
             <FavoriteIcon
               color="secondary"
@@ -75,7 +67,7 @@ const MusicPlayerNavigation = ({ activeSongData }: Props) => {
             className="hover:text-neutral-300 cursor-pointer"
           />
         </a>
-        <a className="my-auto" onClick={playPauseHandler}>
+        <a className="my-auto" onClick={playAudioHandler}>
           {playPause.isPlaying && (
             <PauseIcon
               fontSize="large"

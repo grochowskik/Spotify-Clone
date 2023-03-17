@@ -2,7 +2,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions } from '../../../store/index';
+import { actions } from '../../../store/store';
 import {
   SongsProps,
   Artist,
@@ -10,25 +10,15 @@ import {
 
 interface Props {
   songs: Array<SongsProps>;
-  findSongHandler: (a: string) => void;
-  isActive: boolean;
 }
-
-const MusicList = ({ songs, findSongHandler, isActive }: Props) => {
-  const playPause = useSelector((state) => state);
+const MusicList = ({ songs }: Props) => {
+  const playPause = useSelector((state: IRootState) => state);
   const dispatch = useDispatch();
-  const changeActiveSong = (event: any) => {
-    const elementID = (event.currentTarget as HTMLElement).id;
-    if (elementID) {
-      findSongHandler(elementID);
-    }
+
+  const getAudioHandler = (ID: string) => {
+    dispatch(actions.playPauseAudio(songs.find(({ id }: { id: string }) => id === ID)))
   };
 
-  const playPauseHandler = () => {
-    dispatch(actions.playPause());
-  };
-
-  console.log(playPause.isPlaying);
   return (
     <>
       <section className="mt-8 mx-2 sm:mx-12">
@@ -45,7 +35,9 @@ const MusicList = ({ songs, findSongHandler, isActive }: Props) => {
                 <a
                   id={song.id}
                   className="mx-2 sm:mx-6 my-auto"
-                  onClick={playPauseHandler}
+                  onClick={(event) => {
+                    getAudioHandler(event.currentTarget.id)
+                  }}
                 >
                   {!playPause.isPlaying && (
                     <PlayArrowIcon

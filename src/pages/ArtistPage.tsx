@@ -8,11 +8,8 @@ import { useArtistTopSongsFetch } from '../react-query/fetch/Artist/useArtistTop
 import { useArtistsAlbumsFetch } from '../react-query/fetch/Artist/useArtistsAlbumsFetch';
 import { useArtistFetch } from '../react-query/fetch/Artist/useArtistFetch';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 
 function ArtistPage() {
-  const [activeSongData, setActiveSongData] = useState(null);
-  const [isActive, setIsActive] = useState(false);
   const params = useParams();
 
   const artistTopSongsData = useArtistTopSongsFetch(params.id!);
@@ -20,26 +17,6 @@ function ArtistPage() {
     limit: '4',
     offset: '0',
   });
-
-  const searchSongHandler = (ID: string) => {
-    setActiveSongData(
-      artistTopSongsData.data.tracks.items.find(
-        ({ id }: { id: string }) => id === ID
-      )
-    );
-  };
-
-  const findSongHandler = (ID: string) => {
-    setActiveSongData(
-      artistTopSongsData.data.tracks.find(({ id }: { id: string }) => id === ID)
-    );
-    if (isActive) {
-      setIsActive(false);
-    }
-    if (!isActive) {
-      setIsActive(true);
-    }
-  };
 
   const artistData = useArtistFetch(params.id!);
 
@@ -61,7 +38,7 @@ function ArtistPage() {
     <>
       <Header />
       <div className="flex h-[calc(100%-10rem)] mb-24">
-        <SidebarNavigation searchSongHandler={searchSongHandler} />
+        <SidebarNavigation />
         <div>
           <PageInfo
             images={artistData.data.images}
@@ -73,12 +50,10 @@ function ArtistPage() {
           <AlbumsGrid items={artistAlbumsData.data.items} />
           <MusicList
             songs={artistTopSongsData.data.tracks}
-            findSongHandler={findSongHandler}
-            isActive={isActive}
           />
         </div>
       </div>
-      <MusicPlayerNavigation activeSongData={activeSongData} />
+      <MusicPlayerNavigation />
     </>
   );
 }

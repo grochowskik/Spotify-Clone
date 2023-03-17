@@ -1,11 +1,9 @@
 import SearchResults from '../../UI/Search Results/SearchResults';
 import { useState, useRef } from 'react';
 
-interface Props {
-  searchSongHandler: (a: string) => void;
-}
 
-const SidebarNavigation = ({ searchSongHandler }: Props) => {
+
+const SidebarNavigation = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -30,7 +28,6 @@ const SidebarNavigation = ({ searchSongHandler }: Props) => {
         </section>
         <SearchResults
           searchQuery={searchQuery}
-          searchSongHandler={searchSongHandler}
         />
         <section className=" text-cyan-50 mb-12 mt-32">
           <p className="px-4 py-1 my-2 rounded-2xl bg-purple-800 hover:bg-purple-700 cursor-pointer font-medium">
